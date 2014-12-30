@@ -6,8 +6,9 @@ import java.util.Iterator;
 import com.nothing.c.tree.UserListOpera;
 
 /**
- * @author NOTHING
  * 	准备打入冷宫，不建议再次使用！
+ * @author NOTHING
+ * @deprecated
  */
 public class ManageUserlist {
 	

@@ -1,10 +1,10 @@
 package com.nothing.c.socket;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ManageLoginThread {
 	
-	public static HashMap<String, CtoSThread> hm = new HashMap<String, CtoSThread>();
+	public static ConcurrentHashMap<String, CtoSThread> hm = new ConcurrentHashMap<String, CtoSThread>();
 	
 	public static void addLoginThread(String uid, CtoSThread cs){
 		hm.put(uid, cs);

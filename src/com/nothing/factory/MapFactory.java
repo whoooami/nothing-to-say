@@ -1,9 +1,9 @@
 package com.nothing.factory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Vector;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import com.nothing.object.Message;
 import com.nothing.object.Users;
@@ -14,10 +14,10 @@ public class MapFactory {
 	public static String onlineUsers = "";
 
 	/** 用户的资料对象 */
-	public static Map<String, Users> userMap = new HashMap<String, Users>();
+	public static ConcurrentMap<String, Users> userMap = new ConcurrentHashMap<String, Users>();
 	
 	/** 群消息存放对象 */
-	public static List<Message> groupMsgList = new ArrayList<Message>();
+	public static List<Message> groupMsgList = new Vector<Message>();
 	/** 防止并发修改异常 */
 	/*public synchronized static void removeGroupMsg(Message msg){
 		groupMsgList.remove(msg);

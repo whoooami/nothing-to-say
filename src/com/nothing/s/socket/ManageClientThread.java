@@ -1,9 +1,10 @@
 package com.nothing.s.socket;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.nothing.factory.DBFactory;
 import com.nothing.global.MSGType;
@@ -12,8 +13,8 @@ import com.nothing.util.Tools;
 
 public class ManageClientThread extends Thread {
 	
-	public static HashMap<String, StoCThread> hm = new HashMap<String ,StoCThread>();
-	public static List<Message> msgList = new ArrayList<Message>();
+	public static ConcurrentHashMap<String, StoCThread> hm = new ConcurrentHashMap<String ,StoCThread>();
+	public static List<Message> msgList = new Vector<Message>();
 	public static Server server = new Server();
 	
 	public static void addClientThread(String uId,StoCThread sc){

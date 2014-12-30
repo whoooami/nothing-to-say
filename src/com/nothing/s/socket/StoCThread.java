@@ -1,17 +1,16 @@
 package com.nothing.s.socket;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
 
-import com.nothing.clients.Nothing;
 import com.nothing.factory.UIFactory;
 import com.nothing.global.MSGType;
 import com.nothing.global.Var;
 import com.nothing.object.Message;
-import com.nothing.s.ServerMonitor;
 import com.nothing.util.Tools;
 
 public class StoCThread extends Thread {

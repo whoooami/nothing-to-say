@@ -1,7 +1,7 @@
 drop table if exists groups;
 drop table if exists relations;
 drop table if exists Users;
-create table Users(
+create table users(
 	uID varchar(17)  not null,
 	uPassword varchar(20) not null,
 	uName varchar(20),

@@ -184,7 +184,7 @@ public class SearchResultForm extends MinCloseForm {
 			}else if(btnName.equals("btnCancel")){
 				dispose();
 			}else if(btnName.equals("addQunBtn")){
-				//添加进入群，@nothing
+				//TODO 添加进入群，@nothing
 			}
 		}
 	}

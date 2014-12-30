@@ -67,7 +67,7 @@ public class DBFactory {
 			List group = Tools.stringToList(groups);
 			if(group != null){
 				for(int i=0;i<group.size();i++){
-					String sql = "select * from Groups where gID='"+group.get(i)+"'";
+					String sql = "select * from groups where gID='"+group.get(i)+"'";
 					List groupL = db.exeQuery(sql, Groups.class);
 					if(groupL.size()>0){
 						Groups g = (Groups) groupL.get(0);

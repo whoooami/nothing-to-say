@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.nothing.c.filetrans.ProgressView;
 import com.nothing.object.Message;
@@ -11,11 +13,11 @@ import com.nothing.object.Message;
 
 public class ManageChatForm {
 
-	public static HashMap<String, ChatForm> hm = new HashMap<String, ChatForm>();
+	public static ConcurrentHashMap<String, ChatForm> hm = new ConcurrentHashMap<String, ChatForm>();
 	/** 离线消息列表 */
-	public static List<Message> msgList = new ArrayList<Message>();
+	public static List<Message> msgList = new Vector<Message>();
 	/** 文件传输的panel */
-	public static HashMap<String, ProgressView> hmpv = new HashMap<String, ProgressView>();
+	public static ConcurrentHashMap<String, ProgressView> hmpv = new ConcurrentHashMap<String, ProgressView>();
 	/** 一个窗口同时传输文件的数量 */
 //	public static HashMap<String, String> hmFTCount = new HashMap<String, String>();
 	//nothing tmp
