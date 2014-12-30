@@ -192,7 +192,7 @@ public class Nothing extends JDialog {
 		lbWords.setBounds(57, 35, 152, 15);
 		pan_topin.add(lbWords);
 		
-		JButton[] topButtons = new JButton[8];
+		/*JButton[] topButtons = new JButton[8];
 		for(int i=0;i<topButtons.length;i++){
 			topButtons[i] = new JButton();
 			topButtons[i].setBorder(null);
@@ -209,7 +209,7 @@ public class Nothing extends JDialog {
 		topButtons[4].setBounds(107, 52, 20, 20);
 		topButtons[5].setBounds(127, 52, 20, 20);
 		topButtons[6].setBounds(190, 52, 37, 20);
-		topButtons[7].setBounds(227, 52, 20, 20);
+		topButtons[7].setBounds(227, 52, 20, 20);*/
 		
 		JPanel panFoot = new JPanel();
 		panFoot.setBackground(c);
@@ -224,7 +224,7 @@ public class Nothing extends JDialog {
 		button.addActionListener(new ButtomBtn());
 		panFoot.add(button);
 		
-		JButton button_1 = new JButton();
+		/*JButton button_1 = new JButton();
 		button_1.setBackground(c);
 		button_1.setIcon(new ImageIcon(Nothing.class.getResource("/images/main/qqgame.gif")));
 		button_1.setBounds(81, 9, 20, 20);
@@ -242,7 +242,7 @@ public class Nothing extends JDialog {
 		photoBtn.setBounds(141, 9, 20, 20);
 		photoBtn.setName("photoBtn");
 		photoBtn.addActionListener(new ButtomBtn());
-		panFoot.add(photoBtn);
+		panFoot.add(photoBtn);*/
 		
 		JButton findBtn = new JButton();
 		findBtn.setIcon(new ImageIcon(Nothing.class.getResource("/images/main/qqfind.png")));
@@ -252,7 +252,7 @@ public class Nothing extends JDialog {
 		findBtn.addActionListener(new ButtomBtn());
 		panFoot.add(findBtn);
 		
-		JButton loveBtn = new JButton();
+		/*JButton loveBtn = new JButton();
 		loveBtn.setIcon(new ImageIcon(Nothing.class.getResource("/images/main/heart.jpg")));
 		loveBtn.setBackground(new Color(128, 128, 255));
 		loveBtn.setBounds(51, 8, 20, 20);
@@ -275,7 +275,7 @@ public class Nothing extends JDialog {
 			sideButtons[i].setIcon(new ImageIcon(Nothing.class.getResource("/images/main/Sidebar_0"+(i+1)+".gif")));
 			panel_left.add(sideButtons[i]);
 			sideButtons[i].addMouseListener(new BorderSetEvt(user.getuID(), sideButtons));
-		}
+		}*/
 		
 		this.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent e){

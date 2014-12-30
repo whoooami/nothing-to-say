@@ -26,7 +26,7 @@ public class ButtomBtn implements ActionListener {
 			TakePhoto photo = new TakePhoto();
 			photo.setVisible(true);
 		}else if(btnName.equals("pandaBtn")){
-			Tools.alert("Hi!It's me!\nauther: GAME OVER\nE-mail: ice-_-wind@163.com");
+			Tools.alert("Hi!It's me!\nauther: GAME OVER\nE-mail: nothing.whoami@gmail.com");
 		}
 	}
 

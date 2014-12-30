@@ -96,21 +96,25 @@ public class ChatForm extends MinCloseForm {
 
 		final JButton[] buttons = new JButton[8];
 		for(int i=0;i<buttons.length;i++){
-			buttons[i] = new JButton();
-			buttons[i].setBorder(null);
-			buttons[i].setName(Var.CFTOPBTN+i);
-			buttons[i].setIcon(Tools.getImageIcon("/images/chat/chat"+(i+1)+".gif", 0, 0));
-			panTop.add(buttons[i]);
-			buttons[i].addMouseListener(new BorderSetEvt(cfid, buttons));
+			if(i == 2 || i == 6){
+				buttons[i] = new JButton();
+				buttons[i].setBorder(null);
+				buttons[i].setName(Var.CFTOPBTN+i);
+				buttons[i].setIcon(Tools.getImageIcon("/images/chat/chat"+(i+1)+".gif", 0, 0));
+				panTop.add(buttons[i]);
+				buttons[i].addMouseListener(new BorderSetEvt(cfid, buttons));
+			}
 		}
-		buttons[0].setBounds(7, 42, 43, 27);
+		buttons[2].setBounds(7, 42, 43, 27);
+		buttons[6].setBounds(50, 42, 43, 27);
+		/*buttons[0].setBounds(7, 42, 43, 27);
 		buttons[1].setBounds(50, 42, 43, 27);
 		buttons[2].setBounds(93, 42, 43, 27);
 		buttons[3].setBounds(136, 42, 30, 27);
 		buttons[4].setBounds(166, 42, 30, 27);
 		buttons[5].setBounds(196, 42, 37, 27);
 		buttons[6].setBounds(233, 42, 43, 27);
-		buttons[7].setBounds(276, 42, 30, 27);
+		buttons[7].setBounds(276, 42, 30, 27);*/
 
 		headBtn = new JButton("");
 		headBtn.setIcon(Tools.getImageIcon("/images/head/p.jpg", 30, 30));
