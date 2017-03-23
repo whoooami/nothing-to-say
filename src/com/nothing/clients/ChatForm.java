@@ -31,7 +31,7 @@ import com.nothing.factory.DBFactory;
 import com.nothing.factory.UIFactory;
 import com.nothing.form.base.MinCloseForm;
 import com.nothing.global.MSGType;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.object.Message;
 import com.nothing.object.Users;
 import com.nothing.util.Tools;
@@ -40,7 +40,7 @@ public class ChatForm extends MinCloseForm {
 
 //	public static ChatForm frame = null;
 	private JButton btnSend = null;
-	//Ö÷Ãæ°å
+	//ï¿½ï¿½ï¿½ï¿½ï¿½
 	public JPanel panel = null;
 	public String sendID = null, recvID = null;
 	public JTextPane tpRecv = null,tpSend = null;
@@ -75,8 +75,8 @@ public class ChatForm extends MinCloseForm {
 		this.sendID = sendID;
 		this.recvID = recvID;
 		String cfid = sendID+"-"+recvID;
-		this.setTitle(sendID+" ºÍ "+recvID+" ÁÄÌìÖÐ");
-		super.lbTitle.setText(sendID+" ºÍ "+recvID+" ÁÄÌìÖÐ");
+		this.setTitle(sendID+" å¯¹ "+recvID+" è¯´");
+		super.lbTitle.setText(sendID+" å¯¹ "+recvID+" è¯´");
 //		((JComponent) getContentPane()).setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		panel = new JPanel();
@@ -98,7 +98,7 @@ public class ChatForm extends MinCloseForm {
 		for(int i=0;i<buttons.length;i++){
 			buttons[i] = new JButton();
 			buttons[i].setBorder(null);
-			buttons[i].setName(Var.CFTOPBTN+i);
+			buttons[i].setName(Constants.CFTOPBTN+i);
 			buttons[i].setIcon(Tools.getImageIcon("/images/chat/chat"+(i+1)+".gif", 0, 0));
 			panTop.add(buttons[i]);
 			buttons[i].addMouseListener(new BorderSetEvt(cfid, buttons));
@@ -270,11 +270,11 @@ public class ChatForm extends MinCloseForm {
 			dispose();
 			/*if(vc!=null && vc.getState().equals(State.RUNNABLE)){
 				System.out.println("the VCthread is running");
-				int option = JOptionPane.showOptionDialog(ManageChatForm.getChatFormByID(cfid), "ÕýÔÚ½øÐÐÓïµ¥Í¨Ñ¶£¬ÊÇ·ñÒª¹Ø±Õ£¿", "ÌáÊ¾", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+				int option = JOptionPane.showOptionDialog(ManageChatForm.getChatFormByID(cfid), "ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ïµ¥Í¨Ñ¶ï¿½ï¿½ï¿½Ç·ï¿½Òªï¿½Ø±Õ£ï¿½", "ï¿½ï¿½Ê¾", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 				if(option == JOptionPane.YES_OPTION){
 					vc.interrupt();
 					if(vc.isInterrupted()){
-						System.out.println("ÓïÒôÏß³Ì½áÊø³É¹¦!");
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì½ï¿½ï¿½ï¿½ï¿½É¹ï¿½!");
 					}
 				}else{
 					System.out.println("return");
@@ -289,11 +289,11 @@ public class ChatForm extends MinCloseForm {
 			}*/
 			/*if(vc!=null && vc.getState().equals(State.RUNNABLE)){
 				System.out.println("the VCthread is running");
-				int option = JOptionPane.showOptionDialog(ManageChatForm.getChatFormByID(cfid), "ÕýÔÚ½øÐÐÓïµ¥Í¨Ñ¶£¬ÊÇ·ñÒª¹Ø±Õ£¿", "ÌáÊ¾", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+				int option = JOptionPane.showOptionDialog(ManageChatForm.getChatFormByID(cfid), "ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ïµ¥Í¨Ñ¶ï¿½ï¿½ï¿½Ç·ï¿½Òªï¿½Ø±Õ£ï¿½", "ï¿½ï¿½Ê¾", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 				if(option == JOptionPane.YES_OPTION){
 					vc.interrupt();
 					if(vc.isInterrupted()){
-						System.out.println("ÓïÒôÏß³Ì½áÊø³É¹¦!");
+						System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì½ï¿½ï¿½ï¿½ï¿½É¹ï¿½!");
 					}
 				}else{
 					System.out.println("return");
@@ -313,9 +313,9 @@ public class ChatForm extends MinCloseForm {
 	/**
 	 * 
 	 * @author NOTHING
-	 * 		µ±Ç°ÊÓÍ¼ÇÐ»»ÎªÎÄ¼þ´«Êä
+	 * 		ï¿½ï¿½Ç°ï¿½ï¿½Í¼ï¿½Ð»ï¿½Îªï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param view
-	 * 		ÎÄ¼þ´«ÊäµÄpanel
+	 * 		ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½panel
 	 */
 	public void fileTransView(ProgressView view){
 //		System.out.println(cf.sendID+":"+cf.recvID);
@@ -362,24 +362,24 @@ public class ChatForm extends MinCloseForm {
 	public void openChatForm(String uID, String recvID){
 		ChatForm cf = ManageChatForm.getChatFormByID(uID+"-"+recvID);
 		Users user = DBFactory.getUserByID(recvID);
-		cf.headBtn.setIcon(Tools.getImageIcon(Var.HEADIMGPATH+user.getuHeadImg(), 30, 30));
+		cf.headBtn.setIcon(Tools.getImageIcon(Constants.HEADIMGPATH+user.getuHeadImg(), 30, 30));
 		cf.lblGameOver.setText(user.getuNickName());
 		cf.lblSomeWords.setText(user.getuWords());
 //		ChatForm cf = new ChatForm(uID,ul.getUid());
 //		ManageChatForm.addChatFormByID(uID+"-"+ul.getUid(), cf);
-		//ÅÐ¶ÏÀëÏßÏûÏ¢ÖÐÓÐÃ»µ±Ç°ÓÃ»§µÄÏûÏ¢
+		//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ç°ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		List<Message> l = ManageChatForm.isInList(uID+"-"+recvID);
-		System.out.println(uID+"ÓÐÀëÏßÏûÏ¢:"+l.size());
+		System.out.println(uID+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢:"+l.size());
 		if(l.size()>0){
 			for(Iterator<Message> it = l.iterator();it.hasNext();){
-				Message m = (Message)it.next();
+				Message m = it.next();
 				Tools.addMessage(cf.tpRecv, m.getSender(), m.getRecver(), m.getMsg());
 //				List<Users> l1 = ManageUserlist.getUserListByID(m.getRecver()).users;
 				List<Users> l1 = UIFactory.nothingTree.users;
 				for(Iterator<Users> i = l1.iterator();i.hasNext();){
 					Users u = i.next();
 					if(u.getuID().equals(m.getSender())){
-						u.setIsHaveMsg(Var.NO);
+						u.setIsHaveMsg(Constants.NO);
 					}
 				}
 				ManageChatForm.msgList.remove(m);

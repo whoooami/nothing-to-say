@@ -19,7 +19,7 @@ import sun.audio.AudioStream;
 import com.nothing.clients.Nothing;
 import com.nothing.factory.UIFactory;
 import com.nothing.global.MSGType;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.object.Groups;
 import com.nothing.object.LoginInfo;
 import com.nothing.object.Message;
@@ -52,8 +52,8 @@ public class Client implements Runnable{
 			e.printStackTrace();
 		} catch (IOException e) {
 //			e.printStackTrace();
-			System.out.println("Á¬½ÓÊ§°Ü£¬Çë¼ì²éÍøÂç£¡");
-			Tools.alert("Á¬½ÓÊ§°Ü£¬Çë¼ì²éÍøÂç£¡");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç£¡");
+			Tools.alert("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç£¡");
 		}
 		try {
 			if(bConnect) {
@@ -62,8 +62,8 @@ public class Client implements Runnable{
 				oos.writeObject(li);
 				oos.flush();
 				int i = Integer.parseInt(ois.readObject().toString());
-				Var.Status = i;
-				if(Var.Status == Var.SUCCESS){
+				Constants.Status = i;
+				if(Constants.Status == Constants.SUCCESS){
 					CtoSThread cs = new CtoSThread(s);
 					cs.start();
 					ManageLoginThread.addLoginThread(li.getUid(), cs);
@@ -75,7 +75,7 @@ public class Client implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return Var.Status;
+		return Constants.Status;
 		
 	}
 	
@@ -112,8 +112,8 @@ public class Client implements Runnable{
 			}
 			
 			if(o instanceof Integer){
-				Var.Status = Integer.parseInt(o.toString());
-				System.out.println("var.logn:"+Var.Status);
+				Constants.Status = Integer.parseInt(o.toString());
+				System.out.println("var.logn:"+ Constants.Status);
 			}
 		}
 	}
@@ -122,7 +122,7 @@ public class Client implements Runnable{
 	 * 
 	 * @author NOTHING
 	 * 		
-	 * @param l ÀëÏßÏûÏ¢ÁÐ±í
+	 * @param l ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ð±ï¿½
 	 */
 	public static void setHasMsg(List<Message> l){
 		Set<String> IDset = new HashSet<String>();
@@ -132,35 +132,23 @@ public class Client implements Runnable{
 		}
 		int t = 0;
 		while(t++<IDset.size()){
-			//²¥·ÅÏûÏ¢ÌáÊ¾Òô nothing
-//			Tools.playWav("/tones/msg.wav");
-			/*AePlayWave p = new AePlayWave("/tones/msg.wav");
-			p.start();*/
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ê¾ï¿½ï¿½ nothing
+//			InputStream in = new FileInputStream(Nothing.class.getResource("/tones/msg.wav").getPath().substring(1));// ï¿½ï¿½ï¿½Ä¼ï¿½
+//			System.out.println(Nothing.class.getResource("/tones/msg.wav").getPath().substring(1));
+//			System.out.println(Constants.VOICEPATH+"msg.wav");
+			InputStream in = ClassLoader.getSystemResourceAsStream("/tones/msg.wav");
 			try {
-//				InputStream in = new FileInputStream(Nothing.class.getResource("/tones/msg.wav").getPath().substring(1));// Á÷ÎÄ¼þ
-				System.out.println(Nothing.class.getResource("/tones/msg.wav").getPath().substring(1));
-				System.out.println(Var.VOICEPATH+"msg.wav");
-				InputStream in = new FileInputStream(Var.VOICEPATH+"msg.wav");// Á÷ÎÄ¼þ
-				try {
-					AudioStream as = new AudioStream(in);// ´´½¨AudioStream ¶ÔÏó
-					AudioPlayer.player.start(as);// ¿ªÊ¼²¥·Å
-					// AudioPlayer.player.stop(as);//Í£Ö¹²¥·Å£¬±¾ÀýÃ»ÓÐÉèÖÃ²¥·ÅÊ±¼ä£¬¸èÇú½áÊø×Ô¶¯Í£Ö¹
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
-			} catch (FileNotFoundException e) {
+				AudioStream as = new AudioStream(in);// ï¿½ï¿½ï¿½ï¿½AudioStream ï¿½ï¿½ï¿½ï¿½
+				AudioPlayer.player.start(as);// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-//		System.out.println("Client.×¼±¸½øÈëÏûÏ¢Ñ­»·¡£");
 		for(Iterator<Message> it = l.iterator(); it.hasNext();){
-//			System.out.println("Client.¼ì²â½øÈëÏûÏ¢Ñ­»·¡£");
 			Message m = it.next();
 			if(m.getMsgType() == MSGType.TEXTMSG){
 //				if(UIFactory.nothingTree == null)
 //					continue;
-				//ÕâÀïÈÃÏß³ÌÍ£ÏÂÊÇÎªÁËÈÃnothingTreeÊµÀýÍê³ÉºóÔÙÔËÐÐ³ÌÐò
 				while(true){
 					try {
 						Thread.sleep(500);
@@ -173,41 +161,41 @@ public class Client implements Runnable{
 						break;
 					}
 				}
-//				System.out.println("Client.½øÈëÎÄ±¾ÏûÏ¢Ñ­»·¡£½ÓÊÕÈË£º"+m.getRecver()+"½ÓÊÕÈËÁÐ±í£º"+UIFactory.nothingTree);
+//				System.out.println("Client.ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½Ï¢Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½"+m.getRecver()+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½"+UIFactory.nothingTree);
 				List<Users> recvUsers = UIFactory.nothingTree.users;
-//				System.out.println("Client.ÏûÏ¢½ÓÊÕÕßÁÐ±í£º"+recvUsers.toString());
+//				System.out.println("Client.ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½"+recvUsers.toString());
 				for(Iterator<Users> i = recvUsers.iterator(); i.hasNext();){
-//					System.out.println("Client.¼ì²â½øÈë½ÓÊÕÁÐ±íÑ­»·¡£");
+//					System.out.println("Client.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½");
 					Users u = i.next();
 					String nowID = u.getuID();
 	//				System.out.println(u.getuID());
 					if(m.getSender().equals(nowID)){
-//						System.out.println(m.getSender()+"Client.ÉèÖÃÎªÓÐÏûÏ¢×´Ì¬");
-						u.setIsHaveMsg(Var.YES);
+//						System.out.println(m.getSender()+"Client.ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Ï¢×´Ì¬");
+						u.setIsHaveMsg(Constants.YES);
 					}
 				}
 			}else if(m.getMsgType() == MSGType.GROUPMSG){
-				System.out.println("Client.ÈººÅÂë="+m.getComment());
-				System.out.println("Client.ÈººÅÂë="+UIFactory.groupUserTreeMap.toString());
+				System.out.println("Client.Èºï¿½ï¿½ï¿½ï¿½="+m.getComment());
+				System.out.println("Client.Èºï¿½ï¿½ï¿½ï¿½="+UIFactory.groupUserTreeMap.toString());
 				List<Groups> recvGroups = UIFactory.groupTree.qunlist;
-				System.out.println("Client.µ±Ç°µÄÈº³¤¶È"+recvGroups.size());
+				System.out.println("Client.ï¿½ï¿½Ç°ï¿½ï¿½Èºï¿½ï¿½ï¿½ï¿½"+recvGroups.size());
 				for(Iterator<Groups> i = recvGroups.iterator();i.hasNext();){
 					System.out.println("-----------1-------");
 					Groups g = i.next();
 					String nowID = g.getgID();
 					System.out.println("-------------2------");
-					System.out.println("Client.µ±Ç°µÄÈºID£º"+m.getComment() +"  "+ nowID);
+					System.out.println("Client.ï¿½ï¿½Ç°ï¿½ï¿½ÈºIDï¿½ï¿½"+m.getComment() +"  "+ nowID);
 					if(m.getComment().equals(nowID)){
-						g.setIsHaveMsg(Var.YES);
+						g.setIsHaveMsg(Constants.YES);
 					}
 				}
 				/*if(UIFactory.groupUserTreeMap.containsKey(m.getComment())){
 					List<Groups> recvGroups = UIFactory.groupTree.qunlist;
-					System.out.println("Client.µ±Ç°µÄÈº³¤¶È"+recvGroups.size());
+					System.out.println("Client.ï¿½ï¿½Ç°ï¿½ï¿½Èºï¿½ï¿½ï¿½ï¿½"+recvGroups.size());
 					for(Iterator<Groups> i = recvGroups.iterator();i.hasNext();){
 						Groups g = i.next();
 						String nowID = g.getgID();
-						System.out.println("Client.µ±Ç°µÄÈºID£º"+m.getComment() +"  "+ nowID);
+						System.out.println("Client.ï¿½ï¿½Ç°ï¿½ï¿½ÈºIDï¿½ï¿½"+m.getComment() +"  "+ nowID);
 						if(m.getComment().equals(nowID)){
 							g.setIsHaveMsg(Var.YES);
 						}

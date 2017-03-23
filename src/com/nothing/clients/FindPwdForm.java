@@ -82,21 +82,21 @@ public class FindPwdForm extends MinCloseForm {
 				String uID = IDTf.getText();
 				String uMail = mailTf.getText();
 				if(uID.trim().equals("")){
-					Tools.alert(FindPwdForm.this, "ÓÃ»§ID²»ÄÜÎª¿Õ£¡");
+					Tools.alert(FindPwdForm.this, "ï¿½Ã»ï¿½IDï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½");
 				}else if(uMail.trim().equals("")){
-					Tools.alert(FindPwdForm.this, "µç×ÓÓÊ¼þ²»ÄÜÎª¿Õ");
+					Tools.alert(FindPwdForm.this, "ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½");
 				}else{
 					String sql = "select * from Users where uID='"+uID+"' and uMail='"+uMail+"'";
 					List<Users> l = DBFactory.querySql(sql, Users.class);
 					if(l.size()>0){
-						Users u = (Users)l.get(0);
-						Tools.alert(FindPwdForm.this, "ÕÒ»Ø³É¹¦£¬ÃÜÂëÎª£º"+u.getuPassword());
+						Users u = l.get(0);
+						Tools.alert(FindPwdForm.this, "ï¿½Ò»Ø³É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½"+u.getuPassword());
 						dispose();
 						LoginIN login = new LoginIN();
 						login.setLocationRelativeTo(null);
 						login.setVisible(true);
 					}else{
-						Tools.alert(FindPwdForm.this, "±ðºöÓÆÁË£¬ÕâÕËºÅÄãÐ¡×ÓµØÂð£¿");
+						Tools.alert(FindPwdForm.this, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½Ëºï¿½ï¿½ï¿½Ð¡ï¿½Óµï¿½ï¿½ï¿½");
 					}
 				}
 			}

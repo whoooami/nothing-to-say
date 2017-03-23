@@ -44,7 +44,7 @@ public class SendFile extends Thread {
 //			ManageChatForm.ikey(1);
 			//nothing
 //			ManageChatForm.operaFTCount(cfid, "+");
-			Tools.addMessage(ManageChatForm.getChatFormByID(cfid).tpRecv, "¶Ô·½ÒÑ¾­¿ªÊ¼½ÓÊÕÎÄ¼ş£¡");
+			Tools.addMessage(ManageChatForm.getChatFormByID(cfid).tpRecv, "å¼€å§‹å‘é€æ–‡ä»¶");
 			int tmp = 0;
 			while(true){
 				tmp = bis.read();
@@ -55,7 +55,7 @@ public class SendFile extends Thread {
 				bos.write(tmp);
 				sendSize++;
 			}
-			Tools.addMessage(ManageChatForm.getChatFormByID(cfid).tpRecv, file.getName()+"ÎÄ¼ş·¢ËÍÍê±Ï£¡");
+			Tools.addMessage(ManageChatForm.getChatFormByID(cfid).tpRecv, file.getName()+"ä¼ è¾“å®Œæˆ");
 			bis.close();
 			bos.flush();
 			bos.flush();
@@ -74,7 +74,7 @@ public class SendFile extends Thread {
 	public void chooseSendFile(){
 		ChatForm cf = ManageChatForm.getChatFormByID(cfid);
 		JFileChooser fileChooser = new JFileChooser();
-		int option = fileChooser.showDialog(null, "Ñ¡Ôñ´«ÊäµÄÎÄ¼ş");
+		int option = fileChooser.showDialog(null, "è¯·é€‰æ‹©æ–‡ä»¶");
 		if(option == JFileChooser.APPROVE_OPTION){
 			File file = fileChooser.getSelectedFile();
 			String fileName = file.getName();

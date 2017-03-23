@@ -16,7 +16,7 @@ public class DB {
 	private Dbvo dbvo;
 	
 	public DB(){
-		dbvo = PropertiesUtil.read("jdbc.properties");
+		dbvo = PropertiesUtil.read("conf/jdbc.properties");
 	    DbUtils.loadDriver(dbvo.getDriver()); 
 	}
     

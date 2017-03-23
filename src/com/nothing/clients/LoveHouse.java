@@ -98,10 +98,10 @@ public class LoveHouse extends MinCloseForm {
 		int i = DBFactory.operaDB(sql);
 		if(i == 1){
 			dispose();
-			Tools.alert("°µÁµ³É¹¦£¡");
+			Tools.alert("æš—æ‹æˆåŠŸ");
 			if(DBFactory.isInLove(loveID)){
-				System.out.println("ÆäÊµ£¬"+loveID+" ÒÑ¾­°µÁµÄãºÜ¾ÃÁË¡£");
-				Tools.alert("ÆäÊµ£¬"+loveID+" ÒÑ¾­°µÁµÄãºÜ¾ÃÁË¡£");
+				System.out.println("ç”¨æˆ· "+loveID+" å·²ç»æš—æ‹ä½ å¥½ä¹…äº†.");
+				Tools.alert("ç”¨æˆ· "+loveID+" å·²ç»æš—æ‹ä½ å¥½ä¹…äº†.");
 				Client c = new Client();
 				Message m = new Message();
 				m.setMsg("love");
@@ -111,7 +111,7 @@ public class LoveHouse extends MinCloseForm {
 				c.Send(m);
 			}
 		}else{
-			Tools.alert(LoveHouse.this, "°µÁµÊ§°Ü£¬ÇëÖØĞÂ°µÁµ£¡");
+			Tools.alert(LoveHouse.this, "æš—æ‹è®¾ç½®å¤±è´¥,è¯·é‡è¯•.");
 		}
 	}
 

@@ -24,7 +24,7 @@ import com.nothing.clients.Nothing;
 import com.nothing.clients.RegForm;
 import com.nothing.factory.DBFactory;
 import com.nothing.form.base.MinCloseForm;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.object.LoginInfo;
 import com.nothing.util.Tools;
 import com.nothing.util.Tray;
@@ -62,7 +62,7 @@ public class LoginIN extends MinCloseForm {
 	public LoginIN() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 296, 226);
-		this.setTitle("NOTHING 登陆窗口");
+		this.setTitle("NOTHING TO SAY");
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(c);
@@ -76,7 +76,7 @@ public class LoginIN extends MinCloseForm {
 		
 		
 		JLabel lblNothing = new JLabel("NOTHING \u7528\u6237\u767B\u9646");
-		lblNothing.setFont(new Font("宋体", Font.BOLD, 14));
+		lblNothing.setFont(new Font("鐧婚檰", Font.BOLD, 14));
 		lblNothing.setBounds(77, 0, 124, 16);
 		panel.add(lblNothing);
 		
@@ -104,10 +104,10 @@ public class LoginIN extends MinCloseForm {
 			public void actionPerformed(ActionEvent e) {
 				String pwd = new String(passwordField.getPassword());
 				if(txtUserID.getText().trim().equals("")){
-					Tools.alert("用户ID不能为空！");
+					Tools.alert("Please input your ID...");
 					return;
 				}else if(pwd.trim().equals("")){
-					Tools.alert("密码不能为空！");
+					Tools.alert("Please input your password...");
 					return;
 				}
 				LoginInfo li = new LoginInfo();
@@ -120,8 +120,8 @@ public class LoginIN extends MinCloseForm {
 					IPport[1] = "7777";
 				}
 				Client c = new Client(IPport);
-				Var.Status = c.checkLoginStatu(li);
-				if(Var.Status == Var.SUCCESS){
+				Constants.Status = c.checkLoginStatu(li);
+				if(Constants.Status == Constants.SUCCESS){
 					dispose();
 					ManageImage.loadAllHeadImage();
 					final Nothing nothing = new Nothing(DBFactory.getUserByID(txtUserID.getText()));
@@ -134,10 +134,10 @@ public class LoginIN extends MinCloseForm {
 							nothing.setVisible(false);
 						}
 					});
-				}else if(Var.Status == Var.FAIL){
-					Tools.alert("用户名/密码输入错误！");
-				}else if(Var.Status == Var.REPEAT){
-					Tools.alert("用户" + li.getUid() + "已经登陆！");
+				}else if(Constants.Status == Constants.FAIL){
+					Tools.alert("Login failed!");
+				}else if(Constants.Status == Constants.REPEAT){
+					Tools.alert("ID:" + li.getUid() + "already loginIn.");
 				}
 			}
 		});
@@ -216,7 +216,7 @@ public class LoginIN extends MinCloseForm {
 				findPwd.setVisible(true);
 			}
 		});
-		button.setFont(new Font("宋体", Font.PLAIN, 9));
+//		button.setFont(new Font("锟斤拷锟斤拷", Font.PLAIN, 9));
 		button.setBounds(198, 121, 80, 22);
 		panel.add(button);
 		
@@ -228,7 +228,7 @@ public class LoginIN extends MinCloseForm {
 				ap.setVisible(true);
 			}
 		});
-		button_1.setFont(new Font("宋体", Font.PLAIN, 9));
+//		button_1.setFont(new Font("锟斤拷锟斤拷", Font.PLAIN, 9));
 		button_1.setBounds(198, 93, 80, 22);
 		panel.add(button_1);
 		

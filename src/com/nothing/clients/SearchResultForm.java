@@ -19,7 +19,7 @@ import com.nothing.factory.DBFactory;
 import com.nothing.factory.MapFactory;
 import com.nothing.factory.TreeFactory;
 import com.nothing.form.base.MinCloseForm;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.object.Groups;
 import com.nothing.object.Users;
 import com.nothing.util.Tools;
@@ -32,7 +32,7 @@ public class SearchResultForm extends MinCloseForm {
 	
 	private List list = new ArrayList();
 	/**
-	 * 0 ÓÃ»§ 1Èº
+	 * 0 ï¿½Ã»ï¿½ 1Èº
 	 */
 	private int uorg = 0;
 	/**
@@ -54,13 +54,13 @@ public class SearchResultForm extends MinCloseForm {
 	/**
 	 * Create the frame.
 	 * @author NOTHING
-	 * @param users ÓÃ»§ÁÐ±í
-	 * @param uorg 0ÓÃ»§ 1Èº
+	 * @param users ï¿½Ã»ï¿½ï¿½Ð±ï¿½
+	 * @param uorg 0ï¿½Ã»ï¿½ 1Èº
 	 */
 	public SearchResultForm(List l, int uorg) {
 		setBounds(100, 100, 390, 270);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		super.lbTitle.setText(uorg==0?"²éÕÒÁªÏµÈË":"²éÕÒÈº");
+		super.lbTitle.setText(uorg==0?"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½":"ï¿½ï¿½ï¿½ï¿½Èº");
 		
 		this.list = l;
 		this.uorg = uorg;
@@ -101,7 +101,7 @@ public class SearchResultForm extends MinCloseForm {
 		JButton addBtn = new JButton("\u52A0\u4E3A\u597D\u53CB");
 		addBtn.setBounds(193, 209, 88, 23);
 		if(uorg == 1){
-			addBtn.setText("¼ÓÈëÈº");
+			addBtn.setText("ï¿½ï¿½ï¿½ï¿½Èº");
 			addBtn.setName("addQunBtn");
 		}
 		addBtn.setName("addBtn");
@@ -119,10 +119,10 @@ public class SearchResultForm extends MinCloseForm {
 		int i = 0;
 		if(uorg == 0){
 			model = new DefaultTableModel(new Object[][] { },
-				    new String[] {"ÐòºÅ", "ÓÃ»§ID","êÇ³Æ","ÐÔ±ð","À´×Ô"});
+				    new String[] {"ï¿½ï¿½ï¿½", "ï¿½Ã»ï¿½ID","ï¿½Ç³ï¿½","ï¿½Ô±ï¿½","ï¿½ï¿½ï¿½ï¿½"});
 		}else{
 			model = new DefaultTableModel(new Object[][] { },
-				    new String[] {"ÐòºÅ", "ÈºID","ÈºêÇ³Æ","ÀàÐÍ","ËµÃ÷"});
+				    new String[] {"ï¿½ï¿½ï¿½", "ÈºID","Èºï¿½Ç³ï¿½","ï¿½ï¿½ï¿½ï¿½","Ëµï¿½ï¿½"});
 		}
 		table.setModel(model);
 		//nothing
@@ -132,7 +132,7 @@ public class SearchResultForm extends MinCloseForm {
 		for(;i<list.size();i++){
 			if(uorg == 0){
 				Users user = (Users) list.get(i);
-				model.insertRow(i, new Object[]{i, user.getuID(), user.getuNickName(), user.getuSex()==0?"Å®":"ÄÐ", user.getuProvice()+" "+user.getuCity()});
+				model.insertRow(i, new Object[]{i, user.getuID(), user.getuNickName(), user.getuSex()==0?"Å®":"ï¿½ï¿½", user.getuProvice()+" "+user.getuCity()});
 			}else{
 				Groups group = (Groups)list.get(0);
 				model.insertRow(i, new Object[]{i, group.getgID(), group.getgName(), group.getgKind(), group.getgNote()});
@@ -162,7 +162,7 @@ public class SearchResultForm extends MinCloseForm {
 				String friends = DBFactory.getFriendsByID(Nothing.uID);
 				if(friends.indexOf(addID) != -1){
 					System.out.println("SearchResultForm.friends="+friends+" "+addID);
-					Tools.alert(SearchResultForm.this, addID+"ÒÑ¾­ÊÇÄúµÄºÃÓÑ£¡");
+					Tools.alert(SearchResultForm.this, addID+"ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äºï¿½ï¿½Ñ£ï¿½");
 				}else{
 					String newfriends = friends+","+addID;
 					String sql = "update relations set friends='"+newfriends+"' where uID='"+Nothing.uID+"'";
@@ -170,21 +170,21 @@ public class SearchResultForm extends MinCloseForm {
 					i = DBFactory.operaDB(sql);
 					if(i>0){
 						TreeFactory fac = new TreeFactory(Nothing.uID, UserListOpera.tree);
-						//ÅÐ¶ÏºÃÓÑÊÇ·ñÔÚÏß£¬ÔÚÏßisonlineÖÃÎª1
+						//ï¿½Ð¶Ïºï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½isonlineï¿½ï¿½Îª1
 						Users user = (Users) list.get(index);
 						if(MapFactory.onlineUsers.contains(user.getuID())){
-							user.setIsOnline(Var.ONLINE);
+							user.setIsOnline(Constants.ONLINE);
 						}
 						fac.addTreeNode(UserListOpera.friendNode, user);
-						Tools.alert(SearchResultForm.this, addID+"ÒÑ¾­³É¹¦Ìí¼ÓÎªÄúµÄºÃÓÑ£¡");
+						Tools.alert(SearchResultForm.this, addID+"ï¿½Ñ¾ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Äºï¿½ï¿½Ñ£ï¿½");
 					}else{
-						Tools.alert(SearchResultForm.this, "Ìí¼ÓÊ§°Ü£¬ÉÔºòÇëÖØÊÔ£¡");
+						Tools.alert(SearchResultForm.this, "ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½Ôºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½");
 					}
 				}
 			}else if(btnName.equals("btnCancel")){
 				dispose();
 			}else if(btnName.equals("addQunBtn")){
-				//TODO Ìí¼Ó½øÈëÈº£¬@nothing
+				//TODO ï¿½ï¿½Ó½ï¿½ï¿½ï¿½Èºï¿½ï¿½@nothing
 			}
 		}
 	}

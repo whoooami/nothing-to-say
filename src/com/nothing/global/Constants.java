@@ -1,6 +1,6 @@
 package com.nothing.global;
 
-public class Var {
+public class Constants {
 	
 	public final static String serverIP = "127.0.0.1";
 	public final static int port = 7777;

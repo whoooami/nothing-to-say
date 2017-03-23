@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.nothing.form.base.MinCloseForm;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.s.ServerMonitor;
 
 public class ServerStart extends MinCloseForm {
@@ -61,13 +61,13 @@ public class ServerStart extends MinCloseForm {
 		tfPort.setBounds(95, 77, 131, 18);
 		panel.add(tfPort);
 		tfPort.setColumns(10);
-		tfPort.setText(Var.port+"");
+		tfPort.setText(Constants.port+"");
 		
 		JButton btnStart = new JButton("\u542F\u52A8");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tfPort.getText().trim().equals("")){
-					JOptionPane.showMessageDialog(null, "端口号不能为空！");
+					JOptionPane.showMessageDialog(null, "Please input server port.");
 				}else{
 					dispose();
 					ServerMonitor sm = new ServerMonitor(Integer.parseInt(tfPort.getText()));

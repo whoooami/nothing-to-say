@@ -5,8 +5,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import com.nothing.global.MSGType;
-import com.nothing.global.Var;
-import com.nothing.object.Message;
+import com.nothing.global.Constants;
 
 public class OnlineUsers extends Thread{
 
@@ -30,7 +29,7 @@ public class OnlineUsers extends Thread{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		ManageClientThread.notifyOthers(uID, MSGType.ONLINEUSERS, Var.ONLINE);
+		ManageClientThread.notifyOthers(uID, MSGType.ONLINEUSERS, Constants.ONLINE);
 		
 	}
 	

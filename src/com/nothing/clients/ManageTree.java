@@ -8,7 +8,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 /**
  * 
  * @author NOTHING
- *	目前没用
  */
 public class ManageTree {
 	

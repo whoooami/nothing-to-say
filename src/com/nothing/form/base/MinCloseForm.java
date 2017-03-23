@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.nothing.clients.ChatForm;
-import com.nothing.global.Var;
 
 public class MinCloseForm extends BaseForm {
 
@@ -50,7 +49,7 @@ public class MinCloseForm extends BaseForm {
 		panTop.setLayout(null);
 		
 		lbTitle = new JLabel();
-		lbTitle.setFont(new Font("ËÎÌå", Font.BOLD, 12));
+		lbTitle.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 12));
 		lbTitle.setBounds(10, 0, 200, 16);
 		panTop.add(lbTitle);
 		

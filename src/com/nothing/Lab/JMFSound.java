@@ -32,8 +32,8 @@ public static void main (String[] args) {
     }   
 }   
 public JMFSound (File f)   
-    throws NoPlayerException, CannotRealizeException,   
-            MalformedURLException, IOException {   
+    throws NoPlayerException, CannotRealizeException,
+        IOException {
     soundFile = f;   
     // prepare a dialog to display while playing   
     JOptionPane pane = new JOptionPane ("Playing " + f.getName(),   

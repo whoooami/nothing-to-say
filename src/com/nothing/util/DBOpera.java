@@ -26,7 +26,6 @@ public class DBOpera {
 			con=DriverManager.getConnection(sqlurl,"sa","123456");
 			st=con.createStatement();
 		} catch (SQLException e) {
-			// TODO 自动生成 catch 块
 			e.printStackTrace();
 		}
 	}
@@ -35,7 +34,6 @@ public class DBOpera {
 		try {
 			rs=st.executeQuery(str);
 		} catch (SQLException e) {
-			// TODO 自动生成 catch 块
 			e.printStackTrace();
 		}
 		return rs;
@@ -45,7 +43,6 @@ public class DBOpera {
 		try {
 			st.executeUpdate(sql);
 		} catch (SQLException e) {
-			// TODO 自动生成 catch 块
 			e.printStackTrace();
 		}
 	}
@@ -59,7 +56,6 @@ public class DBOpera {
 			if(con != null)
 				con.close();
 		} catch (SQLException e) {
-			// TODO 自动生成 catch 块
 			e.printStackTrace();
 		}
 	}

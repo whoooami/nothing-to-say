@@ -9,7 +9,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 
 import com.nothing.clients.ManageImage;
 import com.nothing.clients.Nothing;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.object.Groups;
 import com.nothing.object.Users;
 
@@ -32,18 +32,18 @@ public class UserListRenderer extends DefaultTreeCellRenderer {
 				Users user = (Users)node.getUserObject();
 				String headImg = user.getuHeadImg();
 //				System.out.println(user.getuNickName()+" online:"+user.getIsOnline());
-				if(user.getIsOnline() == Var.ONLINE){
+				if(user.getIsOnline() == Constants.ONLINE){
 //					System.out.println("-------------------"+user.getIsHaveMsg());
-					if(user.getIsHaveMsg() == Var.YES){
+					if(user.getIsHaveMsg() == Constants.YES){
 						if(!isHidden)
-							setIcon(ManageImage.getImage(Var.HEADIMGPATH+headImg, 20, 20));
+							setIcon(ManageImage.getImage(Constants.HEADIMGPATH+headImg, 20, 20));
 						else
 							setIcon(ManageImage.getImage("/images/head/0.jpg", 20, 20));
 					}else{
 						setIcon(ManageImage.getImage("/images/head/"+headImg, 20, 20));
 					}
 				}else{
-					if(user.getIsHaveMsg() == Var.YES){
+					if(user.getIsHaveMsg() == Constants.YES){
 						if(!isHidden)
 							setIcon(ManageImage.getGrayImage("/images/head/"+headImg, 20, 20));
 						else
@@ -55,14 +55,14 @@ public class UserListRenderer extends DefaultTreeCellRenderer {
 			}else if(node.getUserObject() instanceof Groups){
 				Groups group = (Groups) node.getUserObject();
 //				System.out.println("render_Group="+group.getIsHaveMsg());
-				if(group.getIsHaveMsg() == Var.YES){
+				if(group.getIsHaveMsg() == Constants.YES){
 					if(!isHidden)
-						setIcon(ManageImage.getImage(Var.GROUPIMGPATH+group.getgImg(), 20, 20));
+						setIcon(ManageImage.getImage(Constants.GROUPIMGPATH+group.getgImg(), 20, 20));
 					else
 						setIcon(ManageImage.getImage("/images/head/0.jpg", 20, 20));
 				}else{
 //					System.out.println("Group="+group.getIsHaveMsg());
-					setIcon(ManageImage.getImage(Var.GROUPIMGPATH+group.getgImg(), 20, 20));
+					setIcon(ManageImage.getImage(Constants.GROUPIMGPATH+group.getgImg(), 20, 20));
 				}
 			}
 		}

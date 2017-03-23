@@ -52,7 +52,7 @@ public class ProgressView extends JPanel implements PropertyChangeListener{
 		this.setLayout(null);
 		this.setOpaque(false);
 //		count = ManageChatForm.getFTCount(cfid);
-		//图标区
+		//图锟斤拷锟斤拷
 		/*if(type.equals("receive")){
 			icon = new ImageIcon("image/receiveFile.jpg");
 		}else{
@@ -61,19 +61,19 @@ public class ProgressView extends JPanel implements PropertyChangeListener{
 		fileIcon = new JLabel(icon);
 		fileIcon.setBounds(2, 2, 29, 44);
 		this.add(fileIcon);*/
-		//文本区
+		//锟侥憋拷锟斤拷
 		nameIcon = new JLabel(file.getName());
 		nameIcon.setForeground(Color.black);
 		nameIcon.setBounds(33, 2, 100, 44);
 		this.add(nameIcon);
-		//进度条
+		//锟斤拷锟斤拷锟斤拷
 		progressBar = new JProgressBar(0,100);
 		progressBar.setValue(0);
 		progressBar.setStringPainted(true);
 		progressBar.setBorderPainted(false);
 		progressBar.setBounds(3, 49, 140, 15);
 		this.add(progressBar);
-		//添加进度监听器兵启动progress
+		//锟斤拷咏锟斤拷燃锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟絧rogress
 		progress.addPropertyChangeListener(this);
 		progress.execute();
 	}
@@ -93,11 +93,10 @@ public class ProgressView extends JPanel implements PropertyChangeListener{
 //		String ids[] = cfid.split("-");
 //		ManageChatForm.getChatFormByID(ids[1]+"-"+ids[0]).defaultView(view);
 		if(type.equals("receive")){
-//			System.out.println(cfid+"窗口一个文件传输完成");
 //			ManageChatForm.operaFTCount(cfid, "-");
 			this.remove(progressBar);
 			
-			openFile = new JLabel("<html><u>打开文件</u></html>");
+			openFile = new JLabel("<html><u>鎵撳紑鏂囦欢</u></html>");
 			openFile.setBounds(3, 50, 60, 15);
 			this.add(openFile);
 			openFile.addMouseListener(new MouseAdapter(){
@@ -115,13 +114,13 @@ public class ProgressView extends JPanel implements PropertyChangeListener{
 							desktop.open(file);
 							ManageChatForm.getChatFormByID(cfid).defaultView(view);
 						}catch(Exception ef){
-							JOptionPane.showMessageDialog(null, "文件格式未知，无法打开！！！");
+							JOptionPane.showMessageDialog(null, "璇烽噸鏂伴�夋嫨鏂囦欢");
 						}
 					}
 				}
 			});
 			
-			openDirector = new JLabel("<html><u>打开目录</u></html>");
+			openDirector = new JLabel("<html><u>鏂囦欢閫夋嫨</u></html>");
 			openDirector.setBounds(73, 50, 60, 15);
 			this.add(openDirector);
 			openDirector.addMouseListener(new MouseAdapter(){

@@ -40,7 +40,7 @@ public class GroupTree implements TreeSelectionListener {
 		tree.setRootVisible(false);
 		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 		tree.setCellRenderer(new UserListRenderer());
-		tree.setToggleClickCount(1);	//ÉèÖÃµ¥»÷Õ¹¿ª½Úµã
+		tree.setToggleClickCount(1);	//ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½Úµï¿½
 		tree.setRowHeight(24);
 		tree.putClientProperty("JTree.lineStyle", "None");
 		tree.addMouseListener(new TreeListener(tree, true));
@@ -48,8 +48,8 @@ public class GroupTree implements TreeSelectionListener {
 	}
 	
 	protected void createGroupLists(DefaultMutableTreeNode root){
-//		System.out.println("GroupTree.¹¤³§ÓÃ»§ÊýÁ¿£º"+MapFactory.userMap.size());
-		DefaultMutableTreeNode qunNode = new DefaultMutableTreeNode("ÈºÁÐ±í");
+//		System.out.println("GroupTree.ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+MapFactory.userMap.size());
+		DefaultMutableTreeNode qunNode = new DefaultMutableTreeNode("ç¾¤");
 		root.add(qunNode);
 		qunlist = DBFactory.getGroupsByID(uID);
 		for(Groups g:qunlist){

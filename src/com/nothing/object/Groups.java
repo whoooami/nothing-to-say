@@ -1,6 +1,6 @@
 package com.nothing.object;
 
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 
 public class Groups {
 
@@ -15,7 +15,7 @@ public class Groups {
 	private String gWords;
 	private String gImg;
 	
-	private int isHaveMsg = Var.NO;
+	private int isHaveMsg = Constants.NO;
 	
 	
 	public String getuID() {

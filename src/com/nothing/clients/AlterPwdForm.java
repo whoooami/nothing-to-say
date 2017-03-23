@@ -97,15 +97,15 @@ public class AlterPwdForm extends MinCloseForm {
 				newPwd = new String(newPwdF.getPassword());
 				rePwd = new String(rePwdF.getPassword());
 				if(uID.trim().equals("")){
-					Tools.alert(AlterPwdForm.this, "ÓÃ»§ID²»ÄÜÎª¿Õ£¡");
+					Tools.alert(AlterPwdForm.this, "ç”¨æˆ·IDä¸èƒ½ä¸ºç©º");
 				}else if(orgPwd.equals("")){
-					Tools.alert(AlterPwdForm.this, "Ô­ÃÜÂë²»ÄÜÎª¿Õ£¡");
+					Tools.alert(AlterPwdForm.this, "åŸå¯†ç ä¸èƒ½ä¸ºç©º");
 				}else if(newPwd.equals("")){
-					Tools.alert(AlterPwdForm.this, "ĞÂÃÜÂë²»ÄÜÎª¿Õ£¡");
+					Tools.alert(AlterPwdForm.this, "æ–°å¯†ç ä¸èƒ½ä¸ºç©º");
 				}else if(rePwd.equals("")){
-					Tools.alert(AlterPwdForm.this, "ÇëÔÙÊäÈëÒ»´ÎĞÂÃÜÂë£¡");
+					Tools.alert(AlterPwdForm.this, "é‡å¤æ–°å¯†ç ä¸èƒ½ä¸ºç©º");
 				}else if(!newPwd.equals(rePwd)){
-					Tools.alert(AlterPwdForm.this, "Á½´ÎÊäÈëÃÜÂë²»Ò»ÖÂ£¡");
+					Tools.alert(AlterPwdForm.this, "ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸ä¸€è‡´");
 				}else{
 					LoginInfo li = new LoginInfo();
 					li.setUid(uID);
@@ -114,16 +114,16 @@ public class AlterPwdForm extends MinCloseForm {
 						String sql = "update Users set uPassword='"+newPwd+"' where uID='"+uID+"'";
 						int i = DBFactory.operaDB(sql);
 						if(i == 1){
-							Tools.alert(AlterPwdForm.this, "ÃÜÂëĞŞ¸Ä³É¹¦£¡");
+							Tools.alert(AlterPwdForm.this, "å¯†ç ä¿®æ”¹æˆåŠŸ");
 							dispose();
 							LoginIN lin = new LoginIN();
 							lin.setLocationRelativeTo(null);
 							lin.setVisible(true);
 						}else{
-							Tools.alert(AlterPwdForm.this, "ĞŞ¸ÄÊ§°Ü£¡ÉÔºòÇëÖØÊÔ");
+							Tools.alert(AlterPwdForm.this, "å¯†ç ä¿®æ”¹å¤±è´¥");
 						}
 					}else{
-						Tools.alert(AlterPwdForm.this, "Ô­ÃÜÂëÊäÈë´íÎó£¡");
+						Tools.alert(AlterPwdForm.this, "åŸå¯†ç è¾“å…¥é”™è¯¯");
 					}
 				}
 			}

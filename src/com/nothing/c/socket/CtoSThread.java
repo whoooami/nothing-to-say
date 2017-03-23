@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -27,7 +26,7 @@ import com.nothing.factory.DBFactory;
 import com.nothing.factory.MapFactory;
 import com.nothing.factory.UIFactory;
 import com.nothing.global.MSGType;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.object.Message;
 import com.nothing.object.Users;
 import com.nothing.util.Tools;
@@ -91,11 +90,11 @@ public class CtoSThread extends Thread{
 						if(UIFactory.groupFormMap.containsKey(gID)){
 							GroupForm gf = UIFactory.groupFormMap.get(gID);
 							Tools.addMessage(gf.tpRecv, m.getSender(), m.getMsg());
-							System.out.println(gID+"ÈºÏûÏ¢£º"+m.getSender()+" Ëµ£º"+m.getMsg());
+							System.out.println(gID+" å‘é€è€…:"+m.getSender()+" æ¶ˆæ¯:"+m.getMsg());
 						}else{
 							MapFactory.groupMsgList.add(MapFactory.groupMsgList.size(),m);
 							Client.setHasMsg(MapFactory.groupMsgList);
-							System.out.println(gID+"´°¿ÚÎ´´ò¿ª-ÈºÏûÏ¢£º"+m.getSender()+" Ëµ£º"+m.getMsg());
+							System.out.println(gID+" å‘é€è€…:"+m.getSender()+" æ¶ˆæ¯:"+m.getMsg());
 						}
 					}else if(m.getMsgType() == MSGType.ONLINEUSERS){
 //						UserListOpera ul = ManageUserlist.getUserListByID(m.getSender());
@@ -103,24 +102,24 @@ public class CtoSThread extends Thread{
 						ul.setOnlineUsers(m.getMsg());
 //						Client.hmONline.put(m.getSender(), m.getMsg());
 						MapFactory.onlineUsers = m.getMsg();
-//						System.out.println("CtoSThread.ÔÚÏßºÃÓÑ£º"+MapFactory.onlineUsers);
+//						System.out.println("CtoSThread.ï¿½ï¿½ï¿½ßºï¿½ï¿½Ñ£ï¿½"+MapFactory.onlineUsers);
 						UserListOpera.tree.repaint();
 						//nothing
-//						System.out.println(Nothing.uID+"½¥Òş½¥ÏÖ´°¿Ú£º"+m.getRecver());
+//						System.out.println(Nothing.uID+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½Ú£ï¿½"+m.getRecver());
 						if(!Nothing.uID.equals(m.getRecver())){
-							if(m.getStates() == Var.ONLINE){
-								fadeOut fade = new fadeOut("ºÃÓÑÉÏÏßÌáÊ¾","ÄãµÄºÃÓÑ"+m.getRecver()+"ÒÑ¾­ÉÏÏß£¡");
+							if(m.getStates() == Constants.ONLINE){
+								fadeOut fade = new fadeOut("æ¶ˆæ¯æç¤º","ç”¨æˆ·"+m.getRecver()+"å·²ä¸Šçº¿");
 								fade.showDlg();
 							}
 						}
 					}else if(m.getMsgType() == MSGType.SENDFILEREQUEST){
 						ChatForm cf = ManageChatForm.getChatFormByID(m.getRecver()+"-"+ m.getSender());
 						Users user = DBFactory.getUserByID(m.getSender());
-						cf.headBtn.setIcon(Tools.getImageIcon(Var.HEADIMGPATH+user.getuHeadImg(), 30, 30));
+						cf.headBtn.setIcon(Tools.getImageIcon(Constants.HEADIMGPATH+user.getuHeadImg(), 30, 30));
 						cf.lblGameOver.setText(user.getuNickName());
 						cf.lblSomeWords.setText(user.getuWords());
 						if(m.getMsg().trim().equals("0")){
-							cf.tpRecv.setText(cf.tpRecv.getText()+"¶Ô·½²»ÔÚÏß£¬·¢ËÍÎÄ¼şÊ§°Ü£¡");
+							cf.tpRecv.setText(cf.tpRecv.getText()+"å·²ç»æ¥æ”¶æ–‡ä»¶");
 						}else{
 							String fileInfos[] = m.getMsg().split(",");
 							String cfid = m.getRecver()+"-"+m.getSender();
@@ -128,31 +127,30 @@ public class CtoSThread extends Thread{
 //							cf.setFocusableWindowState(true);
 //							ManageChatForm.ikey(1);
 							
-							//ÇëÇóÕß¡¢½ÓÊÕÕßµßµ¹£¬·¢»Ø¸øÇëÇóÕß
 							String sender = m.getSender();
 							m.setSender(m.getRecver());
 							m.setRecver(sender);
 							
-							String fileInfo = "ÇëÇóÎÄ¼ş´«Êä\nÎÄ¼şÃû:"+fileInfos[0]+"\nÎÄ¼ş´óĞ¡:"+fileInfos[2];
-							int option = JOptionPane.showOptionDialog(cf, fileInfo, "ÎÄ¼ş´«Êä", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+							String fileInfo = "å‘é€æ–‡ä»¶\næ–‡ä»¶å:"+fileInfos[0]+"\næ–‡ä»¶ä¿¡æ¯:"+fileInfos[2];
+							int option = JOptionPane.showOptionDialog(cf, fileInfo, "æ¥æ”¶æ–‡ä»¶", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 							if(option == JOptionPane.YES_OPTION){
 								JFileChooser fc = new JFileChooser();
 								fc.setSelectedFile(new File(fileInfos[0]));
 								int re = fc.showSaveDialog(cf);
 								if(re == JFileChooser.APPROVE_OPTION){
-									System.out.println(m.getRecver()+"Í¬Òâ½ÓÊÕÎÄ¼ş£º"+fileInfos[0]);
+									System.out.println(m.getRecver()+"Í¬ æ¥æ”¶æ–‡ä»¶ "+fileInfos[0]);
 									File file = fc.getSelectedFile();
 									long size = (long) ((Float.parseFloat(fileInfos[2].substring(0, fileInfos[2].length() - 2)) * 1000) - 4);
 									
 									//nothing
 									ReceiveProgress rpro = new ReceiveProgress(file, size);
-									// ÏÔÊ¾ÎÄ¼ş½ÓÊÕ½ø¶È
+									// ï¿½ï¿½Ê¾ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½
 									ProgressView pview = new ProgressView(file, rpro, "receive", cfid);
 									pview.initialize();
 									cf.fileTransView(pview);
 //									ManageChatForm.addProgressView(cfid, pview);
 //									cf.repaint();
-									//nothing tmpÁÙÊ±½â¾ö°ì·¨
+									//nothing tmpï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ì·¨
 									if(!ManageChatForm.b){
 										rf = new RecvFile(cfid, file);
 										rf.start();
@@ -161,37 +159,37 @@ public class CtoSThread extends Thread{
 										rf.setFile(file);
 									}
 									m.setMsgType(MSGType.SENDFILERESPONSE);
-									m.setStates(Var.YES);
+									m.setStates(Constants.YES);
 									this.send(m);
 								}else{
 									m.setMsgType(MSGType.SENDFILERESPONSE);
-									m.setStates(Var.NO);
+									m.setStates(Constants.NO);
 									this.send(m);
-									Tools.addMessage(cf.tpRecv, "Äã¾Ü¾øÁË"+sender+"·¢À´ÎÄ¼ş£º"+fileInfos[0]);
+									Tools.addMessage(cf.tpRecv, "ç”¨æˆ·:"+sender+" æ¥æ”¶ "+fileInfos[0]);
 								}
 							}else{
 								m.setMsgType(MSGType.SENDFILERESPONSE);
-								m.setStates(Var.NO);
+								m.setStates(Constants.NO);
 								this.send(m);
-								Tools.addMessage(cf.tpRecv, "Äã¾Ü¾øÁË"+sender+"·¢À´ÎÄ¼ş£º"+fileInfos[0]);
+								Tools.addMessage(cf.tpRecv, "ç”¨æˆ·"+sender+"æ‹’ç» "+fileInfos[0]);
 							}
 						}
 					}else if(m.getMsgType() == MSGType.SENDFILERESPONSE){
 						String cfid = m.getRecver()+"-"+m.getSender();
 						ChatForm cf = ManageChatForm.getChatFormByID(cfid);
 						System.out.println("cfid="+cfid);
-						System.out.println(m.getSender()+"ÊÕµ½ÎÄ¼ş·¢ËÍÓ¦´ğ¡£");
+						System.out.println(m.getSender()+"å¼€å§‹æ¥æ”¶æ–‡ä»¶");
 						String fileInfos[] = m.getMsg().split(",");
-						if(m.getStates() == Var.YES){
-							System.out.println("¶Ô·½Í¬Òâ½ÓÊÕÎÄ¼ş");
+						if(m.getStates() == Constants.YES){
+//							System.out.println("ï¿½Ô·ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½");
 							String filePath = fileInfos[1];
 //							System.out.println(fileInfos[0]+"-"+fileInfos[1]);
 							File file = new File(filePath);
 							String ip = m.getComment();
 							SendFile sf = new SendFile(file, cfid, ip);
-							sf.start();// ÏÔÊ¾ÎÄ¼ş·¢ËÍ½ø¶È
-//							ManageChatForm.operaFTCount(cfid, "+");		//½ÓÊÕÍ¬Òâ·¢ËÍÎÄ¼şºó½«¼ÆÊı¼ÓÒ»
-//							System.out.println(cfid+":µ±Ç°´°¿ÚÍ¬Ê±´«ÊäÎÄ¼ş¸öÊı£º"+ManageChatForm.getFTCount(cfid));
+							sf.start();// ï¿½ï¿½Ê¾ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Í½ï¿½ï¿½ï¿½
+//							ManageChatForm.operaFTCount(cfid, "+");		//ï¿½ï¿½ï¿½ï¿½Í¬ï¿½â·¢ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ó½«¼ï¿½ï¿½ï¿½ï¿½ï¿½Ò»
+//							System.out.println(cfid+":ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Í¬Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+ManageChatForm.getFTCount(cfid));
 							SendProgress spro = new SendProgress(sf, file.length());
 							ProgressView pview = new ProgressView(file, spro, "send", cfid);
 							pview.initialize();
@@ -203,80 +201,79 @@ public class CtoSThread extends Thread{
 								cf.defaultView(pview);
 							}*/
 						}else{
-							Tools.addMessage(cf.tpRecv, "¶Ô·½¾Ü¾ø½ÓÊÕÎÄ¼ş:"+fileInfos[0]);
+							Tools.addMessage(cf.tpRecv, "æ–‡ä»¶æ¥æ”¶æˆåŠŸ:"+fileInfos[0]);
 						}
 					}else if(m.getMsgType() == MSGType.VOICECHATREQUEST){
 						ChatForm cf = ManageChatForm.getChatFormByID(m.getRecver()+"-"+ m.getSender());
 						Users user = DBFactory.getUserByID(m.getSender());
-						cf.headBtn.setIcon(Tools.getImageIcon(Var.HEADIMGPATH+user.getuHeadImg(), 30, 30));
+						cf.headBtn.setIcon(Tools.getImageIcon(Constants.HEADIMGPATH+user.getuHeadImg(), 30, 30));
 						cf.lblGameOver.setText(user.getuNickName());
 						cf.lblSomeWords.setText(user.getuWords());
 						if(m.getMsg()!=null && m.getMsg().trim().equals("0")){
-							Tools.addMessage(cf.tpRecv, "¶Ô·½²»ÔÚÏß£¬ÓïÒôÇëÇóÊ§°Ü£¡");
+							Tools.addMessage(cf.tpRecv, "æ¥å—è¯­éŸ³");
 						}else{
 							String cfid = m.getRecver()+"-"+m.getSender();
 							cf.setVisible(true);
 //							cf.setFocusableWindowState(true);
 //							ManageChatForm.ikey(1);
 							
-							//ÇëÇóÕß¡¢½ÓÊÕÕßµßµ¹£¬·¢»Ø¸øÇëÇóÕß
 							String sender = m.getSender();
 							m.setSender(m.getRecver());
 							m.setRecver(sender);
 							
-							String voiceInfo = sender+"ÇëÇóºÍÄú½øĞĞÓïÒôÍ¨»°£¿";
-							int option = JOptionPane.showOptionDialog(cf, voiceInfo, "ÓïÒôÍ¨»°ÉêÇë", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+							String voiceInfo = sender+"å‘èµ·è¯­éŸ³è¯·æ±‚.";
+							int option = JOptionPane.showOptionDialog(cf, voiceInfo, "å‘èµ·è¯­éŸ³", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 							if(option == JOptionPane.OK_OPTION){
 								VoiceServer vs = new VoiceServer(cfid, 9200);
 								vs.start();
 								//nothing
 //								ManageVoiceThread.addVoiceServerThread(cfid, VoiceServer.currentThread());
 								m.setMsgType(MSGType.VOICECHATRESPONSE);
-								m.setStates(Var.YES);
+								m.setStates(Constants.YES);
 								send(m);
-								Tools.addMessage(cf.tpRecv, "ÄãÍ¬ÒâÁË"+sender+"µÄÓïÒôÇëÇó");
+								Tools.addMessage(cf.tpRecv, "æ¥å—"+sender+"è¯­éŸ³è¯·æ±‚");
 							}else{
 								m.setMsgType(MSGType.VOICECHATRESPONSE);
-								m.setStates(Var.NO);
+								m.setStates(Constants.NO);
 								send(m);
-								Tools.addMessage(cf.tpRecv, "Äã¾Ü¾øÁË"+sender+"µÄÓïÒôÇëÇó");
+								Tools.addMessage(cf.tpRecv, "æ‹’ç»"+sender+"è¯­éŸ³è¯·æ±‚");
 							}
 						}
 					}else if(m.getMsgType() == MSGType.VOICECHATRESPONSE){
 						String cfid = m.getRecver()+"-"+m.getSender();
 						ChatForm cf = ManageChatForm.getChatFormByID(cfid);
 						System.out.println("cfid="+cfid);
-						System.out.println(m.getSender()+"½Óµ½ÓïÒôÇëÇóÓ¦´ğ¡£");
-						if(m.getStates() == Var.YES){
-							Tools.addMessage(cf.tpRecv, "¶Ô·½Í¬ÒâÓïÒôÇëÇó");
+						System.out.println(m.getSender()+"æ¥å—è¯­éŸ³è¯·æ±‚");
+						if(m.getStates() == Constants.YES){
+							Tools.addMessage(cf.tpRecv, "æ¥å—è¯­éŸ³è¯·æ±‚");
 //							System.out.println(fileInfos[0]+"-"+fileInfos[1]);
 							String ip = m.getComment();
 							VoiceClient vc = new VoiceClient(cfid, ip, 9200);
 							vc.start();
 //							ManageVoiceThread.addVoiceClientThread(cfid, VoiceClient.currentThread());
 						}else{
-							Tools.addMessage(cf.tpRecv, "¶Ô·½¾Ü¾øÓïÒôÍ¨»°£¡");
+							Tools.addMessage(cf.tpRecv, "æ‹’ç»è¯­éŸ³è¯·æ±‚");
 						}
 					}else if(m.getMsgType() == MSGType.VOICECHATINTERRUPT){
 						String cfid = m.getSender()+"-"+m.getRecver();
 						ChatForm cf = ManageChatForm.getChatFormByID(cfid);
 //						System.out.println("cfid="+cfid);
-						System.out.println(m.getSender()+"½Óµ½ÓïÒôÖĞ¶Ï¡£");
+						System.out.println(m.getSender()+"è¯­éŸ³è¢«ä¸­æ–­");
 						
-						Tools.alert(cf, "ÓïÒôÍ¨»°ÒÑÖĞ¶Ï!");
-						cf.tpRecv.setText("ÓïÒôÍ¨»°ÒÑÖĞ¶Ï!");
+						Tools.alert(cf, "è¯­éŸ³è¢«ä¸­æ–­!");
+						cf.tpRecv.setText("è¯­éŸ³è¢«ä¸­æ–­!");
 						System.out.println("END!"+cfid);
 						System.out.println(cf);
 					}else if(m.getMsgType() == MSGType.LOVEINTHEHOUSE){
-						String s = "ºÅÍâ£¡ºÅÍâ£¡\nÄãµÄÃÎÖĞÇéÈË"+m.getSender()+"<br>´Ë¿ÌÕıÔÚÄ¬Ä¬Ï²»¶Äã£¡<br>LET'S MOVE!";
+						String s = "æ­å–œ\nç”¨æˆ·"+m.getSender()+"<br>å·²ç»çˆ±ä¸Šä½ äº†.<br>LET'S MOVE!";
 						LoveShow love = new LoveShow(s);
 						love.setVisible(true);
 					}
 					
 				}else if(o instanceof String){
-					System.out.println("¿Í»§¶ËÊÕµ½ÏûÏ¢£º"+o.toString());
+					System.out.println("æ–‡å­—æ¶ˆæ¯:"+o.toString());
 				}else{
-					Tools.alert("Î´ÖªĞÅÏ¢¸ñÊ½£¡");
+					Tools.alert("æœªçŸ¥æ¶ˆæ¯ç±»å‹.");
 				}
 			}
 		} catch (IOException e) {

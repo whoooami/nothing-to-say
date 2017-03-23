@@ -35,7 +35,7 @@ public class RecentTree implements TreeSelectionListener {
 		tree.setRootVisible(false);
 		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 		tree.setCellRenderer(new UserListRenderer());
-		tree.setToggleClickCount(1);	//ÉèÖÃµ¥»÷Õ¹¿ª½Úµã
+		tree.setToggleClickCount(1);	//ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½Úµï¿½
 		tree.setRowHeight(24);
 		tree.putClientProperty("JTree.lineStyle", "None");
 		tree.addMouseListener(new TreeListener(tree, false));
@@ -43,15 +43,15 @@ public class RecentTree implements TreeSelectionListener {
 	}
 	
 	protected void createRecentList(DefaultMutableTreeNode root){
-		recentNode = new DefaultMutableTreeNode("×î½üÁªÏµÈË");
+		recentNode = new DefaultMutableTreeNode("æœ€è¿‘è”ç³»äºº");
 		root.add(recentNode);
 		List<String> recentL = DBFactory.getRecentsByID(uID);
 //		users = DBFactory.getRecentsByID(uID);
-//		System.out.println("RecentTree.×î½üÁªÏµÈË£º"+recentL.toString());
-//		System.out.println("RecentTree.×Ü¹¤³§ÓÃ»§ÊıÁ¿£º"+MapFactory.userMap.size());
+//		System.out.println("RecentTree.ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½Ë£ï¿½"+recentL.toString());
+//		System.out.println("RecentTree.ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+MapFactory.userMap.size());
 		for(String recentID : recentL){
 			Users u = MapFactory.userMap.get(recentID);
-//			System.out.println("RecentTree.u="+u+"  "+recentID+"×Ü¹¤³§ÓÃ»§ÊıÁ¿£º"+MapFactory.userMap.size());
+//			System.out.println("RecentTree.u="+u+"  "+recentID+"ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+MapFactory.userMap.size());
 			users.add(u);
 			recentNode.add(new DefaultMutableTreeNode(u));
 		}

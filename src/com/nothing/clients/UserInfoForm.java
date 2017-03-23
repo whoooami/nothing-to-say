@@ -1,7 +1,6 @@
 package com.nothing.clients;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,7 +14,7 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import com.nothing.form.base.MinCloseForm;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.object.Users;
 import com.nothing.util.Tools;
 
@@ -55,7 +54,7 @@ public class UserInfoForm extends MinCloseForm {
 		setBounds(100, 100, 436, 318);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		super.lbTitle.setText("ÓÃ»§×ÊÁÏ");
+		super.lbTitle.setText("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½");
 		
 		panel = new JPanel();
 		panel.setBackground(c);
@@ -182,14 +181,14 @@ public class UserInfoForm extends MinCloseForm {
 	}
 	
 	public void fillInField(Users user){
-		lblHead.setIcon(Tools.getImageIcon(Var.HEADIMGPATH+user.getuHeadImg(), 40, 40));
+		lblHead.setIcon(Tools.getImageIcon(Constants.HEADIMGPATH+user.getuHeadImg(), 40, 40));
 		nickNameTf.setText(user.getuNickName());
 		textPane.setText(user.getuWords());
 		uIDTf.setText(user.getuID());
 		countryTf.setText(user.getuCountry());
 		provinceTf.setText(user.getuProvice());
 		cityTf.setText(user.getuCity());  
-		sexTf.setText(user.getuSex()==0?"Å®":"ÄÐ");   
+		sexTf.setText(user.getuSex()==0?"Å®":"ï¿½ï¿½");   
 		ageTf.setText(user.getuAge()+"");
 		mailTf.setText(user.getuMail());
 		telTf.setText(user.getuTel());

@@ -62,7 +62,6 @@ public class TreeFactory {
 		return null;
 	}*/
 	
-	/** ²åÈëÊ÷½Úµã */
 	public void addTreeNode(DefaultMutableTreeNode node, Users user){
 		((DefaultTreeModel)tree.getModel()).insertNodeInto(new DefaultMutableTreeNode(user), node, node.getChildCount());
 	}

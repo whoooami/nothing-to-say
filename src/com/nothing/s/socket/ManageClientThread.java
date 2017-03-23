@@ -22,7 +22,7 @@ public class ManageClientThread extends Thread {
 	}
 	
 	public static StoCThread getCurrentClientThread(String uID){
-		return (StoCThread)hm.get(uID);
+		return hm.get(uID);
 	}
 	
 	public static void removeCurrentClientThread(String uID){
@@ -39,11 +39,9 @@ public class ManageClientThread extends Thread {
 	}
 	
 	public static void notifyOthers(String uID, int msgType, int state){
-		//获得好友列表中的在线人ID
 		List<String> list = Tools.getAllSameElement(ManageClientThread.getOnlineUserIDs(), DBFactory.getFriendsByID(uID));
-		//获得所有在线人数
 //		List<String> list = new ArrayList<String>(Tools.stringToList(ManageClientThread.getOnlineUserIDs()));
-		System.out.println("好友在线列表:"+list.toString());
+		System.out.println("all online friends of uID:" + uID + " " +list.toString());
 		Message m = new Message();
 		if(msgType == MSGType.ONLINEUSERS){
 			m.setMsgType(MSGType.ONLINEUSERS);
@@ -74,22 +72,13 @@ public class ManageClientThread extends Thread {
 	}
 	
 	public static boolean reLogin(String uID){
-		boolean bLogin = false;
-		Iterator<String> it = hm.keySet().iterator();
-		while(it.hasNext()){
-			String id = it.next().toString();
-			if(id.equals(uID)){
-				bLogin = true;
-				break;
-			}
-		}
-		return bLogin;
+		return hm.containsKey(uID);
 	}
 	
 	public static List<Message> isInList(String uID){
 		List<Message> l = new ArrayList<Message>();
 		for(Iterator<Message> it = msgList.iterator();it.hasNext();){
-			Message m = (Message)it.next();
+			Message m = it.next();
 			String cfID = m.getRecver();
 //			System.out.println("cfID="+cfID+" ubothID="+uID);
 			if(cfID.equals(uID)){

@@ -1,6 +1,5 @@
 package com.nothing.s.socket;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -9,7 +8,7 @@ import java.util.List;
 
 import com.nothing.factory.UIFactory;
 import com.nothing.global.MSGType;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.object.Message;
 import com.nothing.util.Tools;
 
@@ -52,31 +51,30 @@ public class StoCThread extends Thread {
 				if(o instanceof Message){
 					Message m = (Message)o;
 					if(m.getMsgType() == MSGType.TEXTMSG){
-						//这里用来判断接收者是否在线
+						//鏂囧瓧娑堟伅
 						if(ManageClientThread.reLogin(m.getRecver())){
-							Tools.addMessage(UIFactory.monitor, "收到信息包:"+m.getSender()+"对"+m.getRecver()+"说:"+m.getMsg()+Tools.getnow());
+							Tools.addMessage(UIFactory.monitor, "TEXT_MSG:"+m.getSender()+" to "+m.getRecver()+"说:"+m.getMsg()+Tools.getnow());
 							this.send(m);
 						}else{
 							ManageClientThread.msgList.add(ManageClientThread.msgList.size(), m);
-							Tools.addMessage(UIFactory.monitor, m.getRecver()+"不在线，暂存入离线消息包"+Tools.getnow());
-//							System.out.println("离线消息:StoCThread:msg.size="+ManageClientThread.msgList.size());
+							Tools.addMessage(UIFactory.monitor, m.getRecver()+" offline msg: "+m.getMsg() + " " + Tools.getnow());
+//							System.out.println("锟斤拷锟斤拷锟斤拷息:StoCThread:msg.size="+ManageClientThread.msgList.size());
 						}
 					}else if(m.getMsgType() == MSGType.SYSEXIT){
 						ManageClientThread.removeCurrentClientThread(m.getSender());
-						//返回当前的在线列表，更新。
-						ManageClientThread.notifyOthers(m.getSender(), MSGType.ONLINEUSERS, Var.OFFLINE);
-						Tools.addMessage(UIFactory.monitor, m.getSender()+"退出系统！"+Tools.getnow());
-						System.out.println(m.getSender()+"退出系统！");
+						//锟斤拷锟截碉拷前锟斤拷锟斤拷锟斤拷锟叫憋拷锟斤拷锟铰★拷
+						ManageClientThread.notifyOthers(m.getSender(), MSGType.ONLINEUSERS, Constants.OFFLINE);
+						Tools.addMessage(UIFactory.monitor, m.getSender()+" logout "+Tools.getnow());
+						System.out.println(m.getSender()+" logout.");
 					}else if(m.getMsgType() == MSGType.GROUPMSG){
 //						String recvers = m.getRecver();
-						//获取群中在线人数的list
 						List<String> onlineRecver = Tools.getAllSameElement(ManageClientThread.getOnlineUserIDs(), m.getRecver());
-//						System.out.println("StoCThread.群消息接收人列表:"+onlineRecver.toString());
+//						System.out.println("StoCThread.群锟斤拷息锟斤拷锟斤拷锟斤拷锟叫憋拷:"+onlineRecver.toString());
 //						System.out.println("StoCThread."+onlineRecver.contains(Nothing.uID)+"--"+Nothing.uID);
 //						if(onlineRecver.contains(Nothing.uID)){
 //							onlineRecver.remove(Nothing.uID);
 //						}
-//						System.out.println("StoCThread.群消息接收人列表（自己不接收）:"+onlineRecver.toString());
+//						System.out.println("StoCThread.群锟斤拷息锟斤拷锟斤拷锟斤拷锟叫憋拷锟皆硷拷锟斤拷锟斤拷锟秸ｏ拷:"+onlineRecver.toString());
 						for(String recver:onlineRecver){
 							m.setRecver(recver);
 							this.send(m);
@@ -90,7 +88,6 @@ public class StoCThread extends Thread {
 							}
 							this.send(m);
 						}else{
-							//发、接倒，重发至发送者
 							String sender = m.getSender();
 							m.setSender(m.getRecver());
 							m.setRecver(sender);
@@ -105,7 +102,6 @@ public class StoCThread extends Thread {
 							}
 							this.send(m);
 						}else{
-							//发、接倒，重发至发送者
 							String sender = m.getSender();
 							m.setSender(m.getRecver());
 							m.setRecver(sender);
@@ -113,8 +109,7 @@ public class StoCThread extends Thread {
 							this.send(m);
 						}
 					}else if(m.getMsgType() == MSGType.VOICECHATINTERRUPT){
-						//语音、视频中断通知
-						System.out.println("中断请求");
+						System.out.println("voice chat was interrupted.");
 						String sender = m.getSender();
 						m.setSender(m.getRecver());
 						m.setRecver(sender);
@@ -123,9 +118,9 @@ public class StoCThread extends Thread {
 						this.send(m);
 					}
 				}else if(o instanceof String){
-					System.out.println("服务端收到字串消息："+o.toString());
+					System.out.println("String msg:"+o.toString());
 				}else{
-					Tools.alert("未知信息格式！");
+					Tools.alert("What msg??!");
 				}
 			}
 		} catch (IOException e) {

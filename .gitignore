@@ -1,3 +1,6 @@
+*.iml
+.idea/
+
 .classpath
 .project
 .settings
@@ -7,3 +10,7 @@ bin
 *.jar
 *.war
 *.ear
+
+out/
+
+.DS_Store

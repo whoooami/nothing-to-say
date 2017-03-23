@@ -5,13 +5,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import com.nothing.factory.DBFactory;
 import com.nothing.factory.UIFactory;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.object.LoginInfo;
 import com.nothing.object.Message;
 import com.nothing.util.Tools;
@@ -29,7 +28,7 @@ public class Server implements Runnable{
 			ss = new ServerSocket(port);
 			bConnect = true;
 		} catch (IOException e) {
-			System.out.println("¶Ë¿ÚÒÑ±»Õ¼ÓÃ£¬Çë¼ì²éÊÇ·ñÒÑ¿ªÆô£¡");
+			System.out.println("ï¿½Ë¿ï¿½ï¿½Ñ±ï¿½Õ¼ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ñ¿ï¿½ï¿½ï¿½ï¿½ï¿½");
 			System.exit(0);
 		}
 	}
@@ -54,22 +53,22 @@ public class Server implements Runnable{
 				oos = new ObjectOutputStream(s.getOutputStream());
 				ois = new ObjectInputStream(s.getInputStream());
 				LoginInfo li = (LoginInfo)ois.readObject();
-//				System.out.println(li.getUid()+"-"+li.getPwd()+"ÊÔÍ¼µÇÂ½");
+//				System.out.println(li.getUid()+"-"+li.getPwd()+"ï¿½ï¿½Í¼ï¿½ï¿½Â½");
 				if(DBFactory.login(li)){
 					if(ManageClientThread.reLogin(li.getUid())){
-						oos.writeObject(Var.REPEAT);
+						oos.writeObject(Constants.REPEAT);
 						s.close();
 					}else{
-						oos.writeObject(Var.SUCCESS);
+						oos.writeObject(Constants.SUCCESS);
 						StoCThread sct = new StoCThread(s);
 						ManageClientThread.addClientThread(li.getUid(), sct);
-						Tools.addMessage(UIFactory.monitor, li.getUid()+"µÇÂ½³É¹¦"+Tools.getnow());
+						Tools.addMessage(UIFactory.monitor, li.getUid()+"ï¿½ï¿½Â½ï¿½É¹ï¿½"+Tools.getnow());
 						List<Message> l = ManageClientThread.isInList(li.getUid());
 //						System.out.println("ManageClientThread.size="+l.size());
 						for(Iterator<Message> it = l.iterator();it.hasNext();){
 //							System.out.println("-------------en");
-							Message m = (Message)it.next();
-							System.out.println("·þÎñ¶ËÊÕµ½ÐÅÏ¢£º"+m.getMsgType()+"---"+m.getSender()+"-"+m.getRecver()+":"+m.getMsg());
+							Message m = it.next();
+							System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½Ï¢ï¿½ï¿½"+m.getMsgType()+"---"+m.getSender()+"-"+m.getRecver()+":"+m.getMsg());
 							Send(m, m.getRecver());
 							System.out.println("1-ManageClientThread.msgList.size="+ManageClientThread.msgList.size());
 							ManageClientThread.msgList.remove(m);
@@ -80,12 +79,12 @@ public class Server implements Runnable{
 					}
 				}
 				else{
-					oos.writeObject(Var.FAIL);
+					oos.writeObject(Constants.FAIL);
 					s.close();
 				}
 			}
 		} catch (IOException e) {
-			System.out.println("·þÎñ¶ËÍË³ö£¡");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½");
 			return;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

@@ -53,8 +53,7 @@ public class RecvFile extends Thread{
 				fout = new FileOutputStream(file);
 				BufferedOutputStream bos = new BufferedOutputStream(fout);
 				BufferedInputStream bis = new BufferedInputStream(s.getInputStream());
-				//有几个文件线程，就加几次
-				Tools.addMessage(ManageChatForm.getChatFormByID(cfid).tpRecv, "同意接收文件"+file.getName());
+				Tools.addMessage(ManageChatForm.getChatFormByID(cfid).tpRecv, "鏂囦欢鍚嶇О:"+file.getName());
 				int tmp = 0;
 				while(true){
 					tmp = bis.read();
@@ -67,7 +66,7 @@ public class RecvFile extends Thread{
 				bos.flush();
 				bos.close();
 				s.close();
-				Tools.addMessage(ManageChatForm.getChatFormByID(cfid).tpRecv, "接收完成");
+				Tools.addMessage(ManageChatForm.getChatFormByID(cfid).tpRecv, "鏂囦欢鎺ユ敹瀹屾垚.");
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

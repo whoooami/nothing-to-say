@@ -10,7 +10,7 @@ import com.nothing.c.filetrans.SendFile;
 import com.nothing.c.voice.VoiceChat;
 import com.nothing.clients.ChatForm;
 import com.nothing.clients.ManageChatForm;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 
 public class BorderSetEvt implements MouseListener{
 
@@ -27,15 +27,15 @@ public class BorderSetEvt implements MouseListener{
 		String btnName = ((JButton)e.getSource()).getName();
 		System.out.println(btnName);
 //		Container c = e.getComponent().getParent().getParent().getParent().getParent().getParent().getParent();
-		//ÁÄÌì´°¿Ú
+		//ï¿½ï¿½ï¿½ì´°ï¿½ï¿½
 		if(btnName.startsWith("CF")){
 			ChatForm cf = ManageChatForm.getChatFormByID(ID);
-			if(Var.SENDFILEBTN.equals(btnName)){
-				//ÎÄ¼þ´«Êä
+			if(Constants.SENDFILEBTN.equals(btnName)){
+				//ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 				SendFile sf = new SendFile(ID);
 				sf.chooseSendFile();
-			}else if(Var.VOICECHATBTN.equals(btnName)){
-				//ÓïÒôÁÄÌì
+			}else if(Constants.VOICECHATBTN.equals(btnName)){
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				VoiceChat vc = new VoiceChat(ID);
 				vc.sendVoiceResquest();
 			}

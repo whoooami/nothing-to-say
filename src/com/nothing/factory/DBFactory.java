@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.nothing.clients.Nothing;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.object.Groups;
 import com.nothing.object.LoginInfo;
 import com.nothing.object.Relations;
@@ -107,11 +107,11 @@ public class DBFactory {
 				return null;
 			}else{
 				user = (Users) l.get(0);
-				//ÅÐ¶Ïµ±Ç°ÓÃ»§ÊÇ·ñÔÚÏß£¬ÔÚÏß°ÑisonlineÉèÎªVar.ONLINE
-//				System.out.println("DBFactory.ÔÚÏßºÃÓÑÁÐ±í£º"+MapFactory.onlineUsers);
+				//ï¿½Ð¶Ïµï¿½Ç°ï¿½Ã»ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ß°ï¿½isonlineï¿½ï¿½ÎªVar.ONLINE
+//				System.out.println("DBFactory.ï¿½ï¿½ï¿½ßºï¿½ï¿½ï¿½ï¿½Ð±ï¿½"+MapFactory.onlineUsers);
 				if(MapFactory.onlineUsers.indexOf(user.getuID()) != -1){
-//					System.out.println("ÉèÖÃÔÚÏß£º"+user.getuID());
-					user.setIsOnline(Var.ONLINE);
+//					System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½"+user.getuID());
+					user.setIsOnline(Constants.ONLINE);
 				}
 			}
 		}
@@ -121,7 +121,7 @@ public class DBFactory {
 	public static void addRecentByID(String uID){
 		DB db = new DB();
 		List<String> recent = new ArrayList<String>(getRecentsByID(Nothing.uID));
-		System.out.println("DBFactory.×î½ü£º"+recent.toString());
+		System.out.println("DBFactory.addRecent"+recent.toString());
 		if(recent.contains(uID)){
 			recent.remove(uID);
 		}else{
@@ -131,7 +131,7 @@ public class DBFactory {
 		}
 		String recents = uID+","+Tools.listToString(recent);
 		String sql = "update relations set recents='"+recents+"' where uID='"+Nothing.uID+"'";
-		System.out.println("DBFactory.¼ÓÈë×î½ü£º"+sql);
+		System.out.println("DBFactory. recent in db.:"+sql);
 		db.operaData(sql);
 		Users user = getUserByID(uID);
 		if(!UIFactory.recentTree.users.contains(user)){
@@ -159,18 +159,15 @@ public class DBFactory {
 	/**
 	 * 
 	 * @author NOTHING
-	 * 		¼ì²âÄã°µÁµµÄÈËÊÇ·ñÒ²ÔÚ°µÁµÄã
-	 * @param uID Äã°µÁµÈËµÄID
+	 * 		ï¿½ï¿½ï¿½ï¿½ã°µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Ò²ï¿½Ú°ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param uID ï¿½ã°µï¿½ï¿½ï¿½Ëµï¿½ID
 	 * @return
 	 */
 	public static boolean isInLove(String uID){
 		String sql = "select uLover from users where uID='"+uID+"'";
 		Users user = (Users) querySql(sql, Users.class).get(0);
 		String lover = user.getuLover();
-		if(lover.equals(Nothing.uID))
-			return true;
-		else
-			return false;
+		return lover.equals(Nothing.uID);
 	}
 
 }

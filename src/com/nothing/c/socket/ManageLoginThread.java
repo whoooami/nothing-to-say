@@ -13,6 +13,6 @@ public class ManageLoginThread {
 	}
 	
 	public static CtoSThread getCurrentLoginThread(String uid){
-		return (CtoSThread)hm.get(uid);
+		return hm.get(uid);
 	}
 }

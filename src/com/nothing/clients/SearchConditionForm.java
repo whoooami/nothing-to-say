@@ -52,7 +52,7 @@ public class SearchConditionForm extends MinCloseForm {
 	public SearchConditionForm() {
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		super.lbTitle.setText("²éÕÒÁªÏµÈË");
+		super.lbTitle.setText("åœ¨çº¿ç”¨æˆ·");
 
 		panel = new JPanel();
 		panel.setBackground(c);
@@ -172,7 +172,7 @@ public class SearchConditionForm extends MinCloseForm {
 				String uid = ID_TF.getText().trim();
 				String unickname = nickName_TF.getText().trim();
 				if(uid.equals("") && unickname.equals("")){
-					Tools.alert(SearchConditionForm.this, "ÇëÖÁÉÙÊäÈëÒ»ÏîÌõ¼ş½øĞĞ²éÑ¯£¡");
+					Tools.alert(SearchConditionForm.this, "è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶.");
 				}else{
 					if(!uid.equals("") && !unickname.equals("")){
 						sql = "select * from users where uID='"+uid+"' and uNickName='"+unickname+"'";
@@ -188,14 +188,14 @@ public class SearchConditionForm extends MinCloseForm {
 						sr.fillInTable();
 						sr.setVisible(true);
 					}else{
-						Tools.alert(SearchConditionForm.this, "Ã»ÓĞ·ûºÏÌõ¼şµÄID!");
+						Tools.alert(SearchConditionForm.this, "æœªæ‰¾åˆ°ç”¨æˆ·!");
 					}
 				}
 			}
 		}else{
 			String sql = "";
 			if(groupNum_TF.getText().equals("")){
-				Tools.alert(SearchConditionForm.this, "ÈººÅÂë²»ÄÜ²»¿Õ£¡");
+				Tools.alert(SearchConditionForm.this, "è¯·è¾“å…¥ç¾¤å·ç ");
 			}else{
 				sql = "select * from groups where gID='"+groupNum_TF.getText()+"'";
 				List<Groups> group = DBFactory.querySql(sql, Groups.class);
@@ -205,7 +205,7 @@ public class SearchConditionForm extends MinCloseForm {
 					sr.fillInTable();
 					sr.setVisible(true);
 				}else{
-					Tools.alert(SearchConditionForm.this, "Ã»ÓĞÕÒµ½Èº£¡");
+					Tools.alert(SearchConditionForm.this, "æœªæ‰¾åˆ°ç¾¤.");
 				}
 			}
 		}

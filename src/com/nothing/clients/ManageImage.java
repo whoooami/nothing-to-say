@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.util.Tools;
 
 /**
@@ -49,31 +49,31 @@ public class ManageImage {
 	
 	public static List<String> allHeadImage(){
 		
-		headImgPathlist.add(Var.HEADIMGPATH+"go.png");
-		headImgPathlist.add(Var.HEADIMGPATH+"1.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"12.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"13.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"16.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"18.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"20.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"23.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"28.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"29.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"30.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"32.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"36.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"37.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"38.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"40.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"41.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"45.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"49.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"50.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"51.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"52.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"55.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"57.jpg");
-		headImgPathlist.add(Var.HEADIMGPATH+"6.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"go.png");
+		headImgPathlist.add(Constants.HEADIMGPATH+"1.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"12.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"13.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"16.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"18.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"20.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"23.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"28.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"29.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"30.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"32.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"36.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"37.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"38.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"40.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"41.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"45.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"49.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"50.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"51.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"52.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"55.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"57.jpg");
+		headImgPathlist.add(Constants.HEADIMGPATH+"6.jpg");
 		return headImgPathlist;
 		
 	}

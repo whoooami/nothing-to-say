@@ -2,7 +2,6 @@ package com.nothing.s;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -18,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.nothing.factory.UIFactory;
 import com.nothing.form.base.MinCloseForm;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.s.socket.Server;
 
 public class ServerMonitor extends MinCloseForm {
@@ -26,7 +25,7 @@ public class ServerMonitor extends MinCloseForm {
 	private JPanel contentPane;
 	public Server server;
 	public boolean started = false;
-	public static int port = Var.port;
+	public static int port = Constants.port;
 	public JTextPane tax;
 
 	/*public static void main(String[] args) {
@@ -46,10 +45,10 @@ public class ServerMonitor extends MinCloseForm {
 	 * Create the frame.
 	 */
 	public ServerMonitor(int port) {
-		this.port = port;
-		this.setTitle("·şÎñÆ÷¼à¿Ø´°¿Ú");
+		ServerMonitor.port = port;
+		this.setTitle("æœåŠ¡å™¨ç›‘æ§");
 		
-		super.lbTitle.setText("·şÎñÆ÷¼àÊÓÆ÷");
+		super.lbTitle.setText("æœåŠ¡å™¨ç›‘æ§çª—å£");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 667, 469);
@@ -70,9 +69,9 @@ public class ServerMonitor extends MinCloseForm {
 		controlBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*if(started){
-					controlBtn.setText("ÔİÍ£");
+					controlBtn.setText("ï¿½ï¿½Í£");
 				}else{
-					controlBtn.setText("Æô¶¯");
+					controlBtn.setText("ï¿½ï¿½ï¿½ï¿½");
 				}*/
 			}
 		});

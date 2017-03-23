@@ -67,7 +67,7 @@ public class RegForm extends MinCloseForm {
 		super.btnMini.setLocation(this.getWidth()-50, 0);
 		panel.setLayout(null);
 		this.setLocationRelativeTo(null);
-		super.lbTitle.setText("ÇëÌîĞ´¸öÈË×ÊÁÏ");
+		super.lbTitle.setText("æ³¨å†Œ");
 		
 		final JLabel lblHead = new JLabel("head");
 		lblHead.setBounds(307, 10, 40, 39);
@@ -142,7 +142,7 @@ public class RegForm extends MinCloseForm {
 		cityTf.setBounds(271, 230, 86, 21);
 		panel.add(cityTf);
 		
-		comboBoxSex = new JComboBox(new Object[]{"Å®","ÄĞ"});
+		comboBoxSex = new JComboBox(new Object[]{"Å®","ï¿½ï¿½"});
 		comboBoxSex.setBounds(23, 174, 64, 21);
 		panel.add(comboBoxSex);
 //		sexTf.setColumns(10);
@@ -214,7 +214,7 @@ public class RegForm extends MinCloseForm {
 			String pwd = new String(pwdField.getPassword());
 			String repwd = new String(repwdField.getPassword());
 			if(!pwd.equals(repwd)){
-				Tools.alert(RegForm.this, "Á½´ÎÊäÈëÃÜÂë²»Ò»ÖÂ£¬ÇëÖØÊä£¡");
+				Tools.alert(RegForm.this, "ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸ä¸€è‡´.");
 			}else{
 				String tmp = comboBox.getSelectedItem()+"";
 	//			System.out.println(tmp);
@@ -229,9 +229,9 @@ public class RegForm extends MinCloseForm {
 					String sql1 = "insert into relations(uID,friends) values('"+uID+"','"+uID+"')";
 					DBFactory.operaDB(sql1);
 					dispose();
-					Tools.alert("×¢²á³É¹¦£¡\nÄúµÄÕËºÅ£º"+uID+"\nÓÊÏä£º"+mailTf.getText()+"\nÇëÍ×ÉÆ±£¹ÜÄãµÄÕË»§ĞÅÏ¢£¬ÒÔ·À±»ÇÔ£¡");
+					Tools.alert("æ­å–œ\nä½ çš„IDå·ä¸º:"+uID+"\n"+mailTf.getText()+"");
 				}else{
-					Tools.alert("×¢²áÊ§°Ü£¬ÇëÖØÊÔ£¡");
+					Tools.alert("æ³¨å†Œå¤±è´¥.");
 				}
 			}
 		}

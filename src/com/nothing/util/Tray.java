@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import com.nothing.clients.Nothing;
 import com.nothing.evt.SysExit;
 import com.nothing.factory.DBFactory;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 
 public class Tray {
 
@@ -52,17 +52,17 @@ public class Tray {
 		tray = SystemTray.getSystemTray();
 //		icon = new ImageIcon(getClass().getResource("/images/p.jpg"));
 		PopupMenu pm = new PopupMenu();
-		MenuItem mi1 = new MenuItem("ÍË³ö");
-		MenuItem mi2 = new MenuItem("¸ü¶à¹¦ÄÜ");
+		MenuItem mi1 = new MenuItem("ï¿½Ë³ï¿½");
+		MenuItem mi2 = new MenuItem("ï¿½ï¿½ï¿½à¹¦ï¿½ï¿½");
 		pm.add(mi2);
 		pm.add(mi1);
 		mi1.addActionListener(new SysExit(Nothing.uID));
 		mi2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				JOptionPane.showMessageDialog(null, "µãÎÒ¸ÉÂð£¿Õâ¼Ò»ïÌ«ÀÁÁË£¬Õâ¸ö¹¦ÄÜ»¹Ã»×ö£¡\nË³±ãËµÒ»¾ä£¬Äã¿ÉÒÔÂîÎÒ£¬µ«Ç§Íò±ð´ßÎÒ£¡");
+				JOptionPane.showMessageDialog(null, "ï¿½ï¿½ï¿½Ò¸ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ì«ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü»ï¿½Ã»ï¿½ï¿½ï¿½ï¿½\nË³ï¿½ï¿½ËµÒ»ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò£ï¿½ï¿½ï¿½Ç§ï¿½ï¿½ï¿½ï¿½ï¿½Ò£ï¿½");
 			}
 		});
-		String headImgPath = Var.HEADIMGPATH+DBFactory.getUserByID(nothing.uID).getuHeadImg();
+		String headImgPath = Constants.HEADIMGPATH+DBFactory.getUserByID(Nothing.uID).getuHeadImg();
 		trayIcon = new TrayIcon(Tools.getImageIcon(headImgPath, 16, 16).getImage(),"NOTHING",pm);
 		try {
 			tray.add(trayIcon);

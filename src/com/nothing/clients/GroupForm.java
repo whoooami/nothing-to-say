@@ -24,7 +24,7 @@ import com.nothing.factory.MapFactory;
 import com.nothing.factory.UIFactory;
 import com.nothing.form.base.BaseForm;
 import com.nothing.global.MSGType;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.object.Groups;
 import com.nothing.object.Message;
 import com.nothing.util.Tools;
@@ -87,7 +87,7 @@ public class GroupForm extends BaseForm {
 		buttons[7].setBounds(276, 42, 30, 27);
 
 		JButton button = new JButton("");
-		button.setIcon(Tools.getImageIcon(Var.GROUPIMGPATH+g.getgImg(), 30, 30));
+		button.setIcon(Tools.getImageIcon(Constants.GROUPIMGPATH+g.getgImg(), 30, 30));
 		button.setBounds(10, 7, 30, 30);
 		panTop.add(button);
 
@@ -96,7 +96,7 @@ public class GroupForm extends BaseForm {
 		lblGameOver.setBounds(50, 7, 74, 15);
 		panTop.add(lblGameOver);
 
-		JLabel lblSomeWords = new JLabel("¹Ç»Ò¸ß¼¶Èº");
+		JLabel lblSomeWords = new JLabel("ï¿½Ç»Ò¸ß¼ï¿½Èº");
 		lblSomeWords.setBounds(50, 22, 74, 15);
 		panTop.add(lblSomeWords);
 		
@@ -182,7 +182,7 @@ public class GroupForm extends BaseForm {
 			m.setSender(Nothing.uID);
 			m.setRecver(group.getMembers());
 			m.setMsg(tpSend.getText());
-			//°ÑÈººÅÂë·ÅÈë±¸ÓÃ×Ö¶Î
+			//ï¿½ï¿½Èºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë±¸ï¿½ï¿½ï¿½Ö¶ï¿½
 			m.setComment(group.getgID());
 			c.Send(m);
 //			System.out.println("---------------------------fuck");
@@ -213,14 +213,14 @@ public class GroupForm extends BaseForm {
 		for(Message m:MapFactory.groupMsgList){
 			l.add(m);
 		}
-//		System.out.println(group.getgID()+"ÓÐÀëÏßÏûÏ¢:"+l.size());
+//		System.out.println(group.getgID()+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢:"+l.size());
 		if(l.size()>0){
 			for(Iterator<Message> it = l.iterator();it.hasNext();){
-				Message m = (Message)it.next();
+				Message m = it.next();
 				if(m.getComment().equals(group.getgID())){
 					Tools.addMessage(gf.tpRecv, m.getSender(), m.getMsg());
-					System.out.println("GroupForm.ÈºÏûÏ¢£º"+m.getSender()+":"+m.getMsg());
-					group.setIsHaveMsg(Var.NO);
+					System.out.println("GroupForm.Èºï¿½ï¿½Ï¢ï¿½ï¿½"+m.getSender()+":"+m.getMsg());
+					group.setIsHaveMsg(Constants.NO);
 					MapFactory.groupMsgList.remove(m);
 				}
 			}

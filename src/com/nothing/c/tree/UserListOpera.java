@@ -22,18 +22,12 @@ import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import com.nothing.clients.ChatForm;
-import com.nothing.clients.ManageChatForm;
 import com.nothing.clients.ManageTree;
-import com.nothing.clients.ManageUserlist;
-import com.nothing.clients.Nothing;
 import com.nothing.factory.DBFactory;
-import com.nothing.factory.MapFactory;
 import com.nothing.factory.UIFactory;
-import com.nothing.global.Var;
-import com.nothing.object.Message;
+import com.nothing.global.Constants;
 import com.nothing.object.Users;
 import com.nothing.util.Tools;
-import com.sun.jmx.snmp.UserAcl;
 
 public class UserListOpera implements TreeSelectionListener{
 	
@@ -64,7 +58,7 @@ public class UserListOpera implements TreeSelectionListener{
 		tree.setRootVisible(false);
 		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 		tree.setCellRenderer(new UserListRenderer());
-		tree.setToggleClickCount(1);	//ÉèÖÃµ¥»÷Õ¹¿ª½Úµã
+		tree.setToggleClickCount(1);
 		tree.setRowHeight(24);
 		tree.putClientProperty("JTree.lineStyle", "None");
 		MouseListener ml = new MouseAdapter(){
@@ -78,7 +72,7 @@ public class UserListOpera implements TreeSelectionListener{
 							if(node.getUserObject() instanceof Users){
 								Users ul = (Users)node.getUserObject();
 								if(uID.equals(ul.getuID())){
-									Tools.alert("µã×ÔÒÑ¸ÉÂğ°¡£¡Ç·×á°¡£¡");
+									Tools.alert("Don't click yourself, ok?");
 									return;
 								}
 								ChatForm cf = new ChatForm();
@@ -86,9 +80,9 @@ public class UserListOpera implements TreeSelectionListener{
 								/*ChatForm cf = ManageChatForm.getChatFormByID(uID+"-"+ul.getuID());
 //								ChatForm cf = new ChatForm(uID,ul.getUid());
 //								ManageChatForm.addChatFormByID(uID+"-"+ul.getUid(), cf);
-								//ÅĞ¶ÏÀëÏßÏûÏ¢ÖĞÓĞÃ»µ±Ç°ÓÃ»§µÄÏûÏ¢
+								//ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ç°ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 								List<Message> l = ManageChatForm.isInList(uID+"-"+ul.getuID());
-								System.out.println(uID+"ÓĞÀëÏßÏûÏ¢:"+l.size());
+								System.out.println(uID+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢:"+l.size());
 								if(l.size()>0){
 									for(Iterator<Message> it = l.iterator();it.hasNext();){
 										Message m = (Message)it.next();
@@ -129,9 +123,9 @@ public class UserListOpera implements TreeSelectionListener{
 		DefaultMutableTreeNode[] strangers = null;
 		DefaultMutableTreeNode[] blackLists = null;
 		
-		friendNode = new DefaultMutableTreeNode("ÎÒµÄºÃÓÑ");
-		strangerNode = new DefaultMutableTreeNode("Ä°ÉúÈË");
-		blackListNode = new DefaultMutableTreeNode("ºÚÃûµ¥");
+		friendNode = new DefaultMutableTreeNode("æˆ‘çš„å¥½å‹");
+		strangerNode = new DefaultMutableTreeNode("é™Œç”Ÿäºº");
+		blackListNode = new DefaultMutableTreeNode("é»‘åå•");
 		root.add(friendNode);
 		root.add(strangerNode);
 		root.add(blackListNode);
@@ -143,7 +137,6 @@ public class UserListOpera implements TreeSelectionListener{
 		for(i=0;i<friend.size();i++){
 			friendNode.add(new DefaultMutableTreeNode(friend.get(i)));
 		}
-		//Ìí¼ÓÎÒµÄºÃÓÑµ½×ÜºÃÓÑÀïÃæ
 		users.addAll(friend);
 		/*for(i=0;i<11;i++){
 			Users user = new Users("friend"+i,"go.png",i+"");
@@ -156,26 +149,21 @@ public class UserListOpera implements TreeSelectionListener{
 	/**
 	 * 
 	 * @author NOTHING
-	 * 		ÉèÖÃÁĞ±íµÄÔÚÏß×´Ì¬
-	 * @param onlineIDs µ±Ç°ÔÚÏß×Ö´®£¬ÒÔ±ãÍ·ÏñÏÔÊ¾Îª²ÊÉ«£¡
+	 * @param onlineIDs online user ids.
 	 */
 	public void setOnlineUsers(String onlineIDs){
 		String[] onlines = onlineIDs.split(",");
 		int i=0,j=0;
 		for(i=0;i<users.size();i++){
 			Users user = users.get(i);
-			user.setIsOnline(Var.OFFLINE);
+			user.setIsOnline(Constants.OFFLINE);
 //			MapFactory.userMap.put(user.getuID(), user);
 		}
-		//»»ÏÂ±éÀúÉèÖÃÔÚÏßËã·¨
-//		if(users.size()>0 && onlineIDs.length()>5){
-//			
-//		}
 		for(i=0;i<users.size();i++){
 			for(j=0;j<onlines.length;j++){
 				Users user = users.get(i);
 				if(user.getuID().toString().equals(onlines[j])){
-					user.setIsOnline(Var.ONLINE);
+					user.setIsOnline(Constants.ONLINE);
 				}
 			}
 		}
@@ -192,16 +180,15 @@ public class UserListOpera implements TreeSelectionListener{
 	/**
 	 * 
 	 * @author NOTHING
-	 * 		°´ÕÕĞÅÏ¢¡¢ÔÚÏß¡¢ÀëÏßÅÅĞò
-	 * @param userList ºÃÓÑÁĞ±í
+	 * @param userList User list.
 	 */
 	public List<Users> sortUserList(List<Users> userList){
 		List<Users> all = new ArrayList<Users>(), msg = new ArrayList<Users>(), online = new ArrayList<Users>(), outline = new ArrayList<Users>();
 		for(Iterator<Users> i = userList.iterator();i.hasNext();){
 			Users u = i.next();
-			if(u.getIsHaveMsg() == Var.YES){
+			if(u.getIsHaveMsg() == Constants.YES){
 				msg.add(u);
-			}else if(u.getIsOnline() == Var.ONLINE){
+			}else if(u.getIsOnline() == Constants.ONLINE){
 				online.add(u);
 			}
 		}
@@ -216,8 +203,7 @@ public class UserListOpera implements TreeSelectionListener{
 	/**
 	 * 
 	 * @author NOTHING
-	 * 		²éÕÒÊ÷½ÚµãµÄ·½·¨->ºÃÓÑÉÏÃæËÑË÷¿ò
-	 * @param str Ê÷½Úµã×Ö´®
+	 * @param str str
 	 */
 	public static void findInTree(String str) {
 		Object root = tree.getModel().getRoot();

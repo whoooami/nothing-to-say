@@ -14,11 +14,11 @@ import com.nothing.object.Message;
 public class ManageChatForm {
 
 	public static ConcurrentHashMap<String, ChatForm> hm = new ConcurrentHashMap<String, ChatForm>();
-	/** ÀëÏßÏûÏ¢ÁÐ±í */
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ð±ï¿½ */
 	public static List<Message> msgList = new Vector<Message>();
-	/** ÎÄ¼þ´«ÊäµÄpanel */
+	/** ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½panel */
 	public static ConcurrentHashMap<String, ProgressView> hmpv = new ConcurrentHashMap<String, ProgressView>();
-	/** Ò»¸ö´°¿ÚÍ¬Ê±´«ÊäÎÄ¼þµÄÊýÁ¿ */
+	/** Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 //	public static HashMap<String, String> hmFTCount = new HashMap<String, String>();
 	//nothing tmp
 	public static boolean b = false;
@@ -61,7 +61,7 @@ public class ManageChatForm {
 		List<Message> l = new ArrayList<Message>();
 //		System.out.println("-------------isInlist:msgList="+msgList.size());
 		for(Iterator<Message> it = msgList.iterator();it.hasNext();){
-			Message m = (Message)it.next();
+			Message m = it.next();
 //			System.out.println("----------------"+m.getSender());
 			//nothing
 			String cfID = m.getRecver()+"-"+m.getSender();
@@ -76,8 +76,8 @@ public class ManageChatForm {
 	//nothing
 	/*public static void ikey(int i){
 		Iterator it = hm.keySet().iterator();
-		System.out.println("µ±Ç°ChatForm¸öÊý£º"+hm.size());
-		System.out.println("µ±Ç°ChatFormÁÐ±í£º");
+		System.out.println("ï¿½ï¿½Ç°ChatFormï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+hm.size());
+		System.out.println("ï¿½ï¿½Ç°ChatFormï¿½Ð±ï¿½");
 		while(it.hasNext()){
 			System.out.println("it.next=pkey="+it.next().toString());
 		}
@@ -92,7 +92,7 @@ public class ManageChatForm {
 	}*/
 	
 	/*public static void operaFTCount(String cfid, String op){
-		System.out.println(cfid+"ÎÄ¼þ´«ÊäÏß³Ì"+"µ±Ç°FTcount="+getFTCount(cfid));
+		System.out.println(cfid+"ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½"+"ï¿½ï¿½Ç°FTcount="+getFTCount(cfid));
 		int count = 0;
 		if(hmFTCount.containsKey(cfid)){
 			count = Integer.parseInt(hmFTCount.get(cfid));
@@ -108,7 +108,7 @@ public class ManageChatForm {
 		}else{
 			hmFTCount.put(cfid, "1");
 		}
-		System.out.println(cfid+"¸ü¸ÄºóµÄ"+"FTcount="+getFTCount(cfid));
+		System.out.println(cfid+"ï¿½ï¿½ï¿½Äºï¿½ï¿½"+"FTcount="+getFTCount(cfid));
 	}
 	
 	public static int getFTCount(String cfid){

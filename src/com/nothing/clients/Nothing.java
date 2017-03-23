@@ -28,7 +28,7 @@ import com.nothing.evt.ButtomBtn;
 import com.nothing.evt.SysExit;
 import com.nothing.evt.TreeMenu;
 import com.nothing.factory.UIFactory;
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 import com.nothing.object.Users;
 
 public class Nothing extends JDialog {
@@ -196,7 +196,7 @@ public class Nothing extends JDialog {
 		for(int i=0;i<topButtons.length;i++){
 			topButtons[i] = new JButton();
 			topButtons[i].setBorder(null);
-			topButtons[i].setName(Var.NTOPBTN+i);
+			topButtons[i].setName(Constants.NTOPBTN+i);
 			topButtons[i].setIcon(new ImageIcon(Nothing.class.getResource("/images/main/topbar_"+(i+1)+".gif")));
 			pan_topin.add(topButtons[i]);
 			topButtons[i].addMouseListener(new BorderSetEvt(user.getuID(), topButtons));
@@ -271,7 +271,7 @@ public class Nothing extends JDialog {
 			sideButtons[i] = new JButton();
 			sideButtons[i].setBorder(null);
 			sideButtons[i].setBounds(0, (30*i), 32, 30);
-			sideButtons[i].setName(Var.NSIDEBTN+i);
+			sideButtons[i].setName(Constants.NSIDEBTN+i);
 			sideButtons[i].setIcon(new ImageIcon(Nothing.class.getResource("/images/main/Sidebar_0"+(i+1)+".gif")));
 			panel_left.add(sideButtons[i]);
 			sideButtons[i].addMouseListener(new BorderSetEvt(user.getuID(), sideButtons));

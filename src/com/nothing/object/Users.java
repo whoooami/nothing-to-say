@@ -3,7 +3,7 @@ package com.nothing.object;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.nothing.global.Var;
+import com.nothing.global.Constants;
 
 public class Users implements Serializable {
 
@@ -28,8 +28,8 @@ public class Users implements Serializable {
 	private int uForbid = 0;
 	private String uLover = "";
 	/** 在线状态 1：离线 0：在线*/
-	private int isOnline = Var.OFFLINE;
-	private int isHaveMsg = Var.NO;
+	private int isOnline = Constants.OFFLINE;
+	private int isHaveMsg = Constants.NO;
 	
 	public Users(){
 	}

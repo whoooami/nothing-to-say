@@ -6,7 +6,7 @@ import java.util.Iterator;
 import com.nothing.c.tree.UserListOpera;
 
 /**
- * 	准备打入冷宫，不建议再次使用！
+ * 	准锟斤拷锟斤拷锟斤拷锟戒宫锟斤拷锟斤拷锟斤拷锟斤拷锟劫达拷使锟矫ｏ拷
  * @author NOTHING
  * @deprecated
  */
@@ -23,9 +23,6 @@ public class ManageUserlist {
 	}
 	
 	public static boolean isInMap(String pkey){
-		if(hm.containsKey(pkey))
-			return true;
-		else
-			return false;
+		return hm.containsKey(pkey);
 	}
 }
