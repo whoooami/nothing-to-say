@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -52,8 +53,8 @@ public class Client implements Runnable{
 			e.printStackTrace();
 		} catch (IOException e) {
 //			e.printStackTrace();
-			System.out.println("����ʧ�ܣ��������磡");
-			Tools.alert("����ʧ�ܣ��������磡");
+			System.out.println("Login failed!");
+			Tools.alert("登陆失败");
 		}
 		try {
 			if(bConnect) {
@@ -122,7 +123,7 @@ public class Client implements Runnable{
 	 * 
 	 * @author NOTHING
 	 * 		
-	 * @param l ������Ϣ�б�
+	 * @param l 消息
 	 */
 	public static void setHasMsg(List<Message> l){
 		Set<String> IDset = new HashSet<String>();
@@ -132,14 +133,13 @@ public class Client implements Runnable{
 		}
 		int t = 0;
 		while(t++<IDset.size()){
-			//������Ϣ��ʾ�� nothing
 //			InputStream in = new FileInputStream(Nothing.class.getResource("/tones/msg.wav").getPath().substring(1));// ���ļ�
 //			System.out.println(Nothing.class.getResource("/tones/msg.wav").getPath().substring(1));
 //			System.out.println(Constants.VOICEPATH+"msg.wav");
-			InputStream in = ClassLoader.getSystemResourceAsStream("/tones/msg.wav");
+			InputStream in = ClassLoader.getSystemResourceAsStream("tones/msg.wav");
 			try {
-				AudioStream as = new AudioStream(in);// ����AudioStream ����
-				AudioPlayer.player.start(as);// ��ʼ����
+				AudioStream as = new AudioStream(in);
+				AudioPlayer.player.start(as);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -161,30 +161,27 @@ public class Client implements Runnable{
 						break;
 					}
 				}
-//				System.out.println("Client.�����ı���Ϣѭ���������ˣ�"+m.getRecver()+"�������б�"+UIFactory.nothingTree);
 				List<Users> recvUsers = UIFactory.nothingTree.users;
-//				System.out.println("Client.��Ϣ�������б�"+recvUsers.toString());
+				System.out.println("Client.接收消息用户IDs"+ Arrays.toString(recvUsers.toArray()));
 				for(Iterator<Users> i = recvUsers.iterator(); i.hasNext();){
-//					System.out.println("Client.����������б�ѭ����");
 					Users u = i.next();
 					String nowID = u.getuID();
 	//				System.out.println(u.getuID());
 					if(m.getSender().equals(nowID)){
-//						System.out.println(m.getSender()+"Client.����Ϊ����Ϣ״̬");
 						u.setIsHaveMsg(Constants.YES);
 					}
 				}
 			}else if(m.getMsgType() == MSGType.GROUPMSG){
-				System.out.println("Client.Ⱥ����="+m.getComment());
-				System.out.println("Client.Ⱥ����="+UIFactory.groupUserTreeMap.toString());
+				System.out.println("Client.消息备注="+m.getComment());
+				System.out.println("Client.idk ="+UIFactory.groupUserTreeMap.toString());
 				List<Groups> recvGroups = UIFactory.groupTree.qunlist;
-				System.out.println("Client.��ǰ��Ⱥ����"+recvGroups.size());
+				System.out.println("Client. group size: "+recvGroups.size());
 				for(Iterator<Groups> i = recvGroups.iterator();i.hasNext();){
 					System.out.println("-----------1-------");
 					Groups g = i.next();
 					String nowID = g.getgID();
 					System.out.println("-------------2------");
-					System.out.println("Client.��ǰ��ȺID��"+m.getComment() +"  "+ nowID);
+					System.out.println("Client.消息匹配："+m.getComment() +"  "+ nowID);
 					if(m.getComment().equals(nowID)){
 						g.setIsHaveMsg(Constants.YES);
 					}

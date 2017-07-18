@@ -48,7 +48,6 @@ public class GroupTree implements TreeSelectionListener {
 	}
 	
 	protected void createGroupLists(DefaultMutableTreeNode root){
-//		System.out.println("GroupTree.�����û�������"+MapFactory.userMap.size());
 		DefaultMutableTreeNode qunNode = new DefaultMutableTreeNode("群");
 		root.add(qunNode);
 		qunlist = DBFactory.getGroupsByID(uID);

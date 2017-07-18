@@ -1,7 +1,6 @@
-drop table if exists groups;
-drop table if exists relations;
-drop table if exists Users;
-create table users(
+use nothing_to_say;
+
+CREATE TABLE IF NOT EXISTS users(
 	uID varchar(17)  not null,
 	uPassword varchar(20) not null,
 	uName varchar(20),
@@ -42,7 +41,7 @@ insert into users values ('10000','000000','GAME OVER',1,'1900-9-11',11,'火星'
 ('10016','000000','J',1,'1900-9-11',11,'火星','里约热内卢','芝华塔尼欧','110','ice-_-wind@163.com','王力宏','40.jpg','两年前，我写的代码，只有上帝和我能看懂；两年后，只有上帝能看懂！',0,0,'2011-11-11',''),
 ('10017','000000','K',1,'1900-9-11',11,'火星','里约热内卢','芝华塔尼欧','110','ice-_-wind@163.com','潘玮柏','41.jpg','两年前，我写的代码，只有上帝和我能看懂；两年后，只有上帝能看懂！',0,0,'2011-11-11','');
 
-create table relations(
+CREATE TABLE IF NOT EXISTS relations(
 	uID varchar(17)  not null,
 	friends text,
 	blacks text,
@@ -63,7 +62,7 @@ insert into relations values ('10000','10000,10001,10002,10003,10004,10005,10006
  ('10006','10006,10000,10002,10003,10004,10005,10007,10008,10009,10010,10011','','','100000,100002,100004','10000,10002,10003,10004,10005'),
  ('10007','10007,10000,10002,10003,10004,10005,10006,10008,10009,10010,10011','','','100000,100001,100006','10000,10002,10006');
 
-create table groups(
+CREATE TABLE IF NOT EXISTS groups(
 	uID varchar(17) not null,	
 	gID varchar(17) not null primary key,
 	members text,

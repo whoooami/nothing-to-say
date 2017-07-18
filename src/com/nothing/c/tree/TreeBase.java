@@ -41,7 +41,7 @@ public class TreeBase implements TreeSelectionListener {
 		tree.setRootVisible(false);
 		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 		tree.setCellRenderer(new UserListRenderer());
-		tree.setToggleClickCount(1);	//ÉèÖÃµ¥»÷Õ¹¿ª½Úµã
+		tree.setToggleClickCount(1);	//ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½Úµï¿½
 		tree.setRowHeight(24);
 		tree.putClientProperty("JTree.lineStyle", "None");
 		
@@ -49,18 +49,16 @@ public class TreeBase implements TreeSelectionListener {
 	}
 	
 	protected void createGroupUserLists(DefaultMutableTreeNode root){
-//		System.out.println("TreeBase.¹¤³§ÈºÓÃ»§ÁÐ±íÊýÁ¿£º"+MapFactory.userMap.size());
 		String members = group.getMembers();
 		List member = Tools.stringToList(members);
 		for(int i=0;i<member.size();i++){
-			//nothing tmp ÔÝÊ±Ö±½Ó¶Á³ö£¬µ«Òª´ÓÉÏÏßÊ±°ÑËùÓÐÉÏÏßµÄÈË¼ÓÈëuserMap
 //			root.add(new DefaultMutableTreeNode(MapFactory.userMap.get(member.get(i))));
 			root.add(new DefaultMutableTreeNode(DBFactory.getUserByID((String) member.get(i))));
 		}
 	}
 	
 	protected void createRecentUserList(DefaultMutableTreeNode root){
-		DefaultMutableTreeNode recentNode = new DefaultMutableTreeNode("×î½üÁªÏµÈË");
+		DefaultMutableTreeNode recentNode = new DefaultMutableTreeNode("ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½");
 		root.add(recentNode);
 		List<String> recentL = DBFactory.getRecentsByID(uID);
 //		users = DBFactory.getRecentsByID(uID);

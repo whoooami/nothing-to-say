@@ -102,10 +102,9 @@ public class CtoSThread extends Thread{
 						ul.setOnlineUsers(m.getMsg());
 //						Client.hmONline.put(m.getSender(), m.getMsg());
 						MapFactory.onlineUsers = m.getMsg();
-//						System.out.println("CtoSThread.���ߺ��ѣ�"+MapFactory.onlineUsers);
+//						System.out.println("CtoSThread.onlineUsers: "+MapFactory.onlineUsers);
 						UserListOpera.tree.repaint();
 						//nothing
-//						System.out.println(Nothing.uID+"�������ִ��ڣ�"+m.getRecver());
 						if(!Nothing.uID.equals(m.getRecver())){
 							if(m.getStates() == Constants.ONLINE){
 								fadeOut fade = new fadeOut("消息提示","用户"+m.getRecver()+"已上线");

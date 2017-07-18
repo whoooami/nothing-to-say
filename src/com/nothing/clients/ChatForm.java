@@ -369,7 +369,7 @@ public class ChatForm extends MinCloseForm {
 //		ManageChatForm.addChatFormByID(uID+"-"+ul.getUid(), cf);
 		//�ж�������Ϣ����û��ǰ�û�����Ϣ
 		List<Message> l = ManageChatForm.isInList(uID+"-"+recvID);
-		System.out.println(uID+"��������Ϣ:"+l.size());
+		System.out.println(uID+"离线消息数量: "+l.size());
 		if(l.size()>0){
 			for(Iterator<Message> it = l.iterator();it.hasNext();){
 				Message m = it.next();

@@ -58,23 +58,22 @@ public class StoCThread extends Thread {
 						}else{
 							ManageClientThread.msgList.add(ManageClientThread.msgList.size(), m);
 							Tools.addMessage(UIFactory.monitor, m.getRecver()+" offline msg: "+m.getMsg() + " " + Tools.getnow());
-//							System.out.println("������Ϣ:StoCThread:msg.size="+ManageClientThread.msgList.size());
+//							System.out.println("离线消息数量 :StoCThread:msg.size="+ManageClientThread.msgList.size());
 						}
 					}else if(m.getMsgType() == MSGType.SYSEXIT){
 						ManageClientThread.removeCurrentClientThread(m.getSender());
-						//���ص�ǰ�������б����¡�
+						//send offline msg to his online friends.
 						ManageClientThread.notifyOthers(m.getSender(), MSGType.ONLINEUSERS, Constants.OFFLINE);
 						Tools.addMessage(UIFactory.monitor, m.getSender()+" logout "+Tools.getnow());
 						System.out.println(m.getSender()+" logout.");
 					}else if(m.getMsgType() == MSGType.GROUPMSG){
 //						String recvers = m.getRecver();
 						List<String> onlineRecver = Tools.getAllSameElement(ManageClientThread.getOnlineUserIDs(), m.getRecver());
-//						System.out.println("StoCThread.Ⱥ��Ϣ�������б�:"+onlineRecver.toString());
 //						System.out.println("StoCThread."+onlineRecver.contains(Nothing.uID)+"--"+Nothing.uID);
 //						if(onlineRecver.contains(Nothing.uID)){
 //							onlineRecver.remove(Nothing.uID);
 //						}
-//						System.out.println("StoCThread.Ⱥ��Ϣ�������б��Լ������գ�:"+onlineRecver.toString());
+						System.out.println("StoCThread.online friends list:"+onlineRecver.toString());
 						for(String recver:onlineRecver){
 							m.setRecver(recver);
 							this.send(m);

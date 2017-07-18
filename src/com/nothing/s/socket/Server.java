@@ -28,7 +28,7 @@ public class Server implements Runnable{
 			ss = new ServerSocket(port);
 			bConnect = true;
 		} catch (IOException e) {
-			System.out.println("�˿��ѱ�ռ�ã������Ƿ��ѿ�����");
+			System.out.println("系统启动失败，可能端口被占用。");
 			System.exit(0);
 		}
 	}
@@ -62,13 +62,13 @@ public class Server implements Runnable{
 						oos.writeObject(Constants.SUCCESS);
 						StoCThread sct = new StoCThread(s);
 						ManageClientThread.addClientThread(li.getUid(), sct);
-						Tools.addMessage(UIFactory.monitor, li.getUid()+"��½�ɹ�"+Tools.getnow());
+						Tools.addMessage(UIFactory.monitor, li.getUid()+"Login succeed!"+Tools.getnow());
 						List<Message> l = ManageClientThread.isInList(li.getUid());
 //						System.out.println("ManageClientThread.size="+l.size());
 						for(Iterator<Message> it = l.iterator();it.hasNext();){
 //							System.out.println("-------------en");
 							Message m = it.next();
-							System.out.println("������յ���Ϣ��"+m.getMsgType()+"---"+m.getSender()+"-"+m.getRecver()+":"+m.getMsg());
+							System.out.println("Message: "+m.getMsgType()+"---"+m.getSender()+"-"+m.getRecver()+":"+m.getMsg());
 							Send(m, m.getRecver());
 							System.out.println("1-ManageClientThread.msgList.size="+ManageClientThread.msgList.size());
 							ManageClientThread.msgList.remove(m);

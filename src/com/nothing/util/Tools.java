@@ -26,17 +26,17 @@ public class Tools {
 	/**
 	 * 
 	 * @author NOTHING
-	 * 		»ñÈ¡²¢¸ü¸ÄÍ¼Æ¬ÏÔÊ¾µÄ³ß´ç
-	 * @param imgPath Í¼Æ¬ÎÄ¼ş/ÎÄ¼ş¼ĞµÄµØÖ· ·ÅÖÁclassÏÂÃæ
-	 * @param width ÒªÏÔÊ¾µÄ¿í¶È
-	 * @param height ÒªÏÔÊ¾µÄ¸ß¶È
+	 * 		ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Ê¾ï¿½Ä³ß´ï¿½
+	 * @param imgPath Í¼Æ¬ï¿½Ä¼ï¿½/ï¿½Ä¼ï¿½ï¿½ĞµÄµï¿½Ö· ï¿½ï¿½ï¿½ï¿½classï¿½ï¿½ï¿½ï¿½
+	 * @param width Òªï¿½ï¿½Ê¾ï¿½Ä¿ï¿½ï¿½
+	 * @param height Òªï¿½ï¿½Ê¾ï¿½Ä¸ß¶ï¿½
 	 * @return ImageIcon icon
 	 */
 	public static ImageIcon getImageIcon(String imgPath, int width, int height){
 /*//		System.out.println("---------------1----:"+imgPath);
 		int i = 0;
 		if(ManageIcon.getImageIconByPath(imgPath) != null){
-			System.out.println(i+++"²» IO");
+			System.out.println(i+++"ï¿½ï¿½ IO");
 			return ManageIcon.getImageIconByPath(imgPath);
 		}else{
 			System.out.println("only frist");*/
@@ -70,7 +70,7 @@ public class Tools {
 				bi = ImageIO.read(Nothing.class.getResource(imgPath));
 //				bi = ImageIO.read(new File(imgPath));
 			} catch (IOException e) {
-				System.out.println("ÕÒ²»µ½Í·ÏñÎÄ¼ş£¡");
+				System.out.println("ï¿½Ò²ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½");
 				e.printStackTrace();
 			}
 			ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
@@ -91,7 +91,7 @@ public class Tools {
 	/**
 	 * 
 	 * @author NOTHING
-	 * 		ÕÒ³öÁ½¸ö×Ö´®ÖĞÏàÍ¬µÄÔªËØ
+	 * 		ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Ôªï¿½ï¿½
 	 * @param onlines	10000,10001,10002,10004
 	 * @param friends	10000,10002,10003,10005
 	 * @return	List[10000,10002]
@@ -169,15 +169,27 @@ public class Tools {
 		int k=JOptionPane.showConfirmDialog(null, ask,title , JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 		return k;
 	}
-	
-	/** Ìí¼Ó½øÁÄÌì´°¿ÚµÄ½ÓÊÕÄÚÈİ */
+
+	/**
+	 * åœ¨é¢æ¿ä¸Šæ˜¾ç¤ºæ¶ˆæ¯
+	 * @param tp
+	 * @param sender
+	 * @param recver
+	 * @param msg
+	 */
 	public static void addMessage(JTextPane tp, String sender, String recver,String msg){
-		tp.setText(tp.getText()+sender+" ¶Ô "+recver+"Ëµ£º"+"\r"+"       "+Tools.formatMsg(msg)+"\r");
+		tp.setText(tp.getText()+sender+" å¯¹ "+recver+" è¯´ "+"\r"+"       "+Tools.formatMsg(msg)+"\r");
 		tp.select(tp.getText().length(), tp.getText().length());
 	}
-	/** Ìí¼Ó½øÈºÁÄÌì´°¿ÚµÄ½ÓÊÕÄÚÈİ */
+
+	/**
+	 * åœ¨é¢æ¿ä¸Šæ˜¾ç¤ºæ¶ˆæ¯
+	 * @param tp
+	 * @param sender
+	 * @param msg
+	 */
 	public static void addMessage(JTextPane tp, String sender,String msg){
-		tp.setText(tp.getText()+sender+"Ëµ£º"+"\r"+"       "+Tools.formatMsg(msg)+"\r");
+		tp.setText(tp.getText()+sender+" è¯´ "+"\r"+"       "+Tools.formatMsg(msg)+"\r");
 		tp.select(tp.getText().length(), tp.getText().length());
 	}
 	
@@ -185,13 +197,20 @@ public class Tools {
 		msg = msg.replace("\r\n", "\r\n"+"       ");
 		return msg;
 	}
-	
-	/** Ìí¼Ó½øÁÄÌì´°¿ÚµÄ½ÓÊÕÄÚÈİ */
+
+	/**
+	 * åœ¨é¢æ¿ä¸Šæ˜¾ç¤ºæ¶ˆæ¯
+	 * @param tp
+	 * @param msg
+	 */
 	public static void addMessage(JTextPane tp, String msg){
 		tp.setText(tp.getText()+"       "+Tools.formatMsg(msg)+"\r");
 	}
 
-	/** ×¢²áÊ±»ñÈ¡ÕËºÅ */
+	/**
+	 * æ ¹æ®åŒºé—´ç”Ÿæˆæ–°ç”¨æˆ·è´¦å·
+	 * @return
+	 */
 	public static String getAcountNum(){
 		int baseNum = 10000,incrementNum = 1000000;
 		String result = "";
@@ -209,8 +228,7 @@ public class Tools {
 		int result = (int) (baseNum + Math.random()*incrementNum);
 		return result;
 	}
-	
-	/** ²¥·ÅwavÉùÒô */
+
 	public static void playWav(String path){
 		/*System.out.println(path);
 		WavPlay p = new WavPlay(Nothing.class.getResource(path));

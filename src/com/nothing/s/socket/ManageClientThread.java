@@ -45,9 +45,8 @@ public class ManageClientThread extends Thread {
 		Message m = new Message();
 		if(msgType == MSGType.ONLINEUSERS){
 			m.setMsgType(MSGType.ONLINEUSERS);
-			for(Iterator<String> it=list.iterator();it.hasNext();){
-				String sender = it.next().toString();
-//				String senderFriends = DBFactory.getFriendsByID(sender);
+			for (String sender : list) {
+				//				String senderFriends = DBFactory.getFriendsByID(sender);
 				String onlines = ManageClientThread.getOnlineUserIDs();
 //				String senderOnline = Tools.listToString(Tools.getAllSameElement(ManageClientThread.getOnlineUserIDs(), senderFriends));
 				m.setSender(sender);
